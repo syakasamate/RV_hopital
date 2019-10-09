@@ -1,7 +1,7 @@
 <?php
 ini_set("display_errors",1);
 error_reporting(E_ALL);
-require_once'entities/Patient.classe.php';
+require_once'entities/Patient.class.php';
 class PatientDB extends Model{
 
     public function construct(){
