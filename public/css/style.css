@@ -1,0 +1,20 @@
+a{
+   text-decoration: none;
+     color: white;
+    font-weight: bold;
+    background-color: red; 
+    font-size: 20px;
+    text-align: center;
+    
+}
+li{
+    text-align: center;
+}
+.container{
+    margin-top: 8%;
+}
+.menu{
+    margin-top: 4%;
+}
+
+
