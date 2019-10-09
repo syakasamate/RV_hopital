@@ -2,7 +2,7 @@
 <body>
 <div class="container col-md-9 col-md-offset-2">
     <div class="panel panel-info">
-    <div class="panel-heading">Ajout de Patient</div>
+    <div class="panel-heading">Ajout de Patient
     <div class="panel-body">
     <form action="<?php echo URL.'Patient/addP';?>"   method="post">
     <div class="form-group">
@@ -36,6 +36,7 @@
 
     <input type="submit" value="Enregistrer" name="envoyer"  class="btn btn-primary">
     </form>
+    </div>
     </div>
     </div>
     </div>

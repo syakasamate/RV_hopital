@@ -3,7 +3,7 @@
 <body>
 <div class="container   col-md-8 col-md-offset-3 ">
         <div class="panel panel-info" >
-            <div class="panel-heading">Liste des Employes</div>
+            <div class="panel-heading">Liste des Patient</div>
             <div class="panel-body">
             <table class="table table-bordered">
              <caption></caption>
@@ -29,9 +29,8 @@ foreach($data as $pa){
         <td>$patient[Tel_p]</td>
         <td>$patient[Adresse_p]</td>
         <td>$patient[Email_p]</td>
-        <td>editer</td>
-        <td>delete</td>
-       
+        <td><a href=''>Editer</a> </td>
+        <td><a href=''>Delete</a> </td>
         </tr> ";
     }
 

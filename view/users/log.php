@@ -5,7 +5,7 @@
     <div class="panel panel-info">
     <div class="panel-heading">page de connection</div>
     <div class="panel-body">
-    <form action="<?php echo URL.'User/log';?>"   method="post">
+    <form action="<?php echo URL.'Users/log';?>"   method="post">
     <div class="form-group">
     <label for="" class="form control-label">Login</label>
     <input type="text" class="form-control" name="login">
