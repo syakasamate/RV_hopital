@@ -21,8 +21,6 @@
             if(file_exists($controller)){
                 require_once $controller;
                 $contol_objet=new $url[0]();
-             $contol_objet->loadmodel($url[0]);
-
                 if(isset($url[2])){
                     if(method_exists($contol_objet,$url[1])){
                         $m=$url[1];
