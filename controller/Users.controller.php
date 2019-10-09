@@ -3,7 +3,7 @@
     error_reporting(E_ALL);
    require_once'model/UserDAO.php';
     require_once'entities/User.class.php';
-class   User extends Controller {
+class Users extends Controller {
     
     public function construct(){
         parent::__construct();
@@ -13,12 +13,16 @@ public function log(){
       $udb= new userDB();
       $login=$_POST['login'];
       $password=$_POST['pasword'];
-      $data['donne']=$udb->login($login,$password);
-       return $this->view->load('user/add.php',$data);
-   
+     $udb->login($login,$password);
+       if($udb->login($login,$password)){
+       return $this->view->load('patient/add.php');
+       }
+
+       return $this->view->load('users/log.php');
+    
     }else{
     
-        return $this->view->load('user/add.php');
+       return $this->view->load('users/log.php');
      
     }
 }

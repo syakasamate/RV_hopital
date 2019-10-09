@@ -2,7 +2,7 @@
 ini_set("display_errors",1);
 error_reporting(E_ALL);
 require_once'model/IPatientDAO.php';
-require_once'entities/Patient.classe.php';
+require_once'entities/Patient.class.php';
 class Patient  extends Controller{
     
     public function  construct(){
