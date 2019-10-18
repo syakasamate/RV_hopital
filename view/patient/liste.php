@@ -1,7 +1,7 @@
 
 <?php require_once'view/head.php' ?>
-<body>
-<div class="container   col-md-8 col-md-offset-3 ">
+<body class="card text-white bg-success">
+<div class="container   col-md-8 col-md-offset-2 ">
         <div class="panel panel-info" >
             <div class="panel-heading">Liste des Patient</div>
             <div class="panel-body">
@@ -18,9 +18,10 @@
           <th scope="col">Email</th>
           <th scope="col" colspan="2 ">Action</th>
         </tr>
-<?php
+        <?php 
 foreach($data as $pa){
     foreach($pa as $patient){
+        
         echo "<tr>
         <td>$patient[Nom_p]</td>
         <td>$patient[Prenom_p]</td>
@@ -28,13 +29,15 @@ foreach($data as $pa){
         <td>$patient[Genre_P]</td>
         <td>$patient[Tel_p]</td>
         <td>$patient[Adresse_p]</td>
-        <td>$patient[Email_p]</td>
-        <td><a href=''>Editer</a> </td>
-        <td><a href=''>Delete</a> </td>
-        </tr> ";
+        <td>$patient[Email_p]</td>"?>
+        <td><a href="<?php  echo URL.'Patient/edit/'.$patient[0];?>">Editer</a> </td>
+        <td><a href="<?php  echo URL.'Patient/delete/'.$patient[0];?>">Delete</a> </td>
+        <?php
+      echo" </tr> ";
     }
 
 }
+
 ?> 
 </table>
 </div>
