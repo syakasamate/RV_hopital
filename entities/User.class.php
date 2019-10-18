@@ -1,5 +1,5 @@
 <?php 
-class userC{
+class UserC{
     private $login;
     private $password;
 

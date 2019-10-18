@@ -1,6 +1,9 @@
 <?php
 
 class PatientC{
+	private $idP;
+
+	
     private $nomP;
     private $prenomP;
 	private $ageP;
@@ -22,7 +25,14 @@ class PatientC{
 		
 
     }
-   
+	public function getIdP() {
+		return $this->idP;
+	}
+
+	public function setIdP($idP) {
+		$this->idP = $idP;
+	}
+
 	public function getNomP() {
 		return $this->nomP;
     }
@@ -66,7 +76,7 @@ class PatientC{
 	}
 
 	public function setTelP($telP) {
-		$this->telP = $telP;
+		$this->telP =$telP;
 	}
 	public function getEmailP(){
 		return $this->emailP;
