@@ -1,4 +1,5 @@
 <?php
+// les dependances 
 require_once'model/MedcinDAO.php';
 require_once'model/ServiceDAO.php';
 require_once'model/DomaineDAO.php';
@@ -8,6 +9,7 @@ class Medcin extends  Controller{
         parent::__construct();
     }
     public function addM(){
+        //Instanciation du model
             $addm=new MedcinDB();
             if(isset($_POST['envoyer'])){
             $nomM=$_POST['nomM'];
@@ -18,6 +20,7 @@ class Medcin extends  Controller{
             $idD=$_POST['nomD'];
            $data['ok']=0;
             if(!empty($nomM)&&!empty($prenomM)&&!empty($telM)&&!empty($emailM)&& !empty($idS)&& !empty($idD)){
+                //Instanciation du class
                 $medcin= new MedcinC();
                 $medcin->setNomM($nomM);
                 $medcin->setPrenomM($prenomM);
@@ -30,9 +33,13 @@ class Medcin extends  Controller{
            
 
             }
+            //Instanciation du model
             $listS=new ServiceDB();
+            //liste service
             $data['liste']=$listS->listService();
+            //Instanciation du model
             $listD=new DomaineDB();
+            //liste Domaine
             $dat['list']=$listD->listeDomaine();
             return $this->view->load("medcin/add.php",$data,$dat);
         }else{

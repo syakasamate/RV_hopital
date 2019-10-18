@@ -1,12 +1,16 @@
 <?php
+//les depandances
 require_once'model/SecretaireDAO.php';
 require_once'model/ServiceDAO.php';
 require_once'entities/Secretaire.class.php';
 class Secretaire extends  Controller{
+    //constructeur du controller 
     public function construct(){
         parent::__construct();
     }
+    //fonction ajout secretaire
     public function addSec(){
+          //Intenciation du model
             $addsec=new SecretaireDB();
             if(isset($_POST['envoyer'])){
             $nomSec=$_POST['nomSec'];
@@ -16,6 +20,7 @@ class Secretaire extends  Controller{
             $idS=$_POST['nomS'];
            $data['ok']=0;
             if(!empty($nomSec)&&!empty($prenomSec)&&!empty($telSec)&&!empty($emailSec)&& !empty($idS)){
+                //Intenciation du class
                 $secretaire= new SecretaireC();
                 $secretaire->setNomSec($nomSec);
                 $secretaire->setPrenomSec($prenomSec);
@@ -27,7 +32,9 @@ class Secretaire extends  Controller{
            
 
             }
+            //Intenciation du model
             $listS=new ServiceDB();
+            //liste des service
             $data['liste']=$listS->listService();
             return $this->view->load("secretaire/add.php",$data);
         }else{

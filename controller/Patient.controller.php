@@ -77,7 +77,7 @@ class Patient  extends Controller{
         $pdb=new PatientDB();  
         //Supression
         $data['test']=$pdb->getPatient($idP);
-        //chargement de la vue edit.html
+        //chargement de la vue edite.php
         return $this->view->load("patient/edite.php", $data);
     }
     public function delete($idP){

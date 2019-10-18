@@ -10,8 +10,9 @@
         public function construct(){
             parent::__construct();
         }
-    //fonction ajout rencez_vous    
+    //la methode ajout rencez_vous    
     public function addR(){
+        //Intanciation du model
         $addr=new RendezVousDB ();
         if(isset($_POST['envoyer'])){
             $heureRv=$_POST['heureRv'];
@@ -19,6 +20,7 @@
             $nomM=$_POST['nomM'];
             $nomP=$_POST['nomP'];
             if(!empty($heureRv)&& !empty($dateRv)&& !empty($nomM) && !empty($nomP)){
+                //Intanciation du class
                 $rv= new  RendezVousC();
                 $rv->setheureRv($heureRv);
                 $rv->setDateRv($dateRv);

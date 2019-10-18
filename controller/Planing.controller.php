@@ -6,6 +6,7 @@ class Planing extends Controller{
     public function construct(){
         parent::__construct();
     }
+    //fonction ajout planing 
 public function addPl(){
     $addpl=new PlaningDB();
             if(isset($_POST['envoyer'])){
@@ -25,6 +26,7 @@ public function addPl(){
            
 
             }
+            //liste des medcin
             $listMed=new  MedcinDB();
             $data['list']=$listMed->listMedcin();
             return $this->view->load("planing/add.php",$data);
