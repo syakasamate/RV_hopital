@@ -1,7 +1,6 @@
 <?php
 ini_set("display_errors",1);
 error_reporting(E_ALL);
-require_once 'config/autoloaders.php';
 require_once'config/DataBaseConfig.class.php';
 require_once'config/path.php';
 require_once'libs/Boostrap.class.php';
