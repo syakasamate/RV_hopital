@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="public/fontawesome-free-5.10.1-web/css/all.css">
 <?php require_once'view/head.php' ?>
 <body class="card text-white bg-success">
 <div class="container   col-md-8 col-md-offset-2 ">
@@ -30,8 +30,8 @@ foreach($data as $pa){
         <td>$patient[Tel_p]</td>
         <td>$patient[Adresse_p]</td>
         <td>$patient[Email_p]</td>"?>
-        <td><a href="<?php  echo URL.'Patient/edit/'.$patient[0];?>">Editer</a> </td>
-        <td><a href="<?php  echo URL.'Patient/delete/'.$patient[0];?>"onclick="return confirm('Etes vous sur de vouloir supprimer ce Patient ?');">Delete</a> </td>
+        <td><button class="btn-info"><a href="<?php  echo URL.'Patient/edit/'.$patient[0];?>"> Edider</a></button> </td>
+        <td><button class="btn-danger"><a href="<?php  echo URL.'Patient/delete/'.$patient[0];?>"onclick="return confirm('Etes vous sur de vouloir supprimer ce Patient ?');">Delete</a></button></td>
         <?php
       echo" </tr> ";
     }
@@ -39,11 +39,14 @@ foreach($data as $pa){
 }
 
 ?> 
+
 </table>
 </div>
 </div>
 </div>
 </tbody>
+
+
 </body>
 </html>
 

@@ -5,7 +5,7 @@
 <body class="card text-white bg-info" >
 <div class="container col-md-5 col-md-offset-2">
     <div class="panel panel-info">
-    <div class="panel-heading">Ajout Medcin  </div>
+    <div class="panel-heading">Ajout Rendez_Vous </div>
     <div class="panel-body">
     <form action="<?php echo URL.'RendezVous/addR';?>"   method="post">
     <div class="form-group">
@@ -19,6 +19,7 @@
     <div class="form-group">
     <label for="" class="form control-label">Nom Medecin</label>
     <select name="nomM" id="nomM">
+      <option value=""></option>
     <?php
     foreach($data as $med ){
     foreach($med as $medecin){
@@ -34,6 +35,7 @@
     <div class="form-group">
     <label for="" class="form control-label">Nom Patient</label>
     <select name="nomP" id="nomp">
+      <option value=""></option>
     <?php 
     foreach($dat as $pat ){
     foreach($pat as $patient){
