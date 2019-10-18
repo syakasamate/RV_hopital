@@ -8,11 +8,10 @@ li{
     text-decoration: none;
   
 }
-a{
+button a{
     text-decoration: none;
-    color: blue;
-    text-align: center;
-    background-color: azure;
+    color: white;
+    
 }
 .container{
     margin-top: 8%;
@@ -20,5 +19,12 @@ a{
 .menu{
     margin-top: 4%;
 }
-
+ul{
+    background-color: cornsilk;
+    margin-left: 10%;
+}
+li:hover{
+    background-color: blue;
+  
+}
 
