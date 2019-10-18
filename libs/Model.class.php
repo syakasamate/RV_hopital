@@ -3,12 +3,11 @@ ini_set("display_errors",1);
 error_reporting(E_ALL);
 class Model{
     protected $db;
+    //constructeur de la class Model
     public function __construct(){
-
         $this->db=$this->getconnexion();
-
     }
-
+//connexition à la base de donnée
     private function getconnexion(){
         try {
         $host=DataBaseConfig::params()[0];

@@ -1,8 +1,7 @@
 <?php
 class View{
-    
+   //la fonction pour charger la fonction charger 
  public function load(){
-
     $num=func_num_args();
     $arg=func_get_args();
 
@@ -13,12 +12,18 @@ class View{
         case 2:
         $this->charger($arg[0],$arg[1]);
         break;
+        case 3;
+        $this->charger($arg[0],$arg[1],$arg[2]);
+        break;
+        case 4;
+        $this->charger($arg[0],$arg[1],$arg[2],$arg[3]);
+        break;
         default:
-         break;
+        break;
     }
-
     }
-     private function charger($page, $data=array()){
+    //la fonction pour charger les pages et les donées
+     private function charger($page, $data=array(),$dat=array(),$donne=array()){
          $date=$data;
          $page='view/'.$page;
          if(file_exists($page)){
@@ -26,6 +31,7 @@ class View{
          }else{
              echo" la view $page n'existe pas";
          }
+        
      }
 }
 

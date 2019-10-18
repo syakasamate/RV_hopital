@@ -2,17 +2,11 @@
 
 class Controller{
     protected $view;
-
+      //contructeur de la class controller
     public function __construct(){
+        //l'intensification de la classe view
         $this->view=new View();
     }
-    public function loadmodel($name){
-        $path='model/'.$name.'DAO.php';
-        if(file_exists($path)){
-            require_once'model/'.$name.'DAO.php';
-            $modelmame=$name.'DB';
-            $this->model=new $modelmame();
-        }
-    }
+   
 }
 ?>
