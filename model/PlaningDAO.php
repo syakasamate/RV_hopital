@@ -1,8 +1,10 @@
 <?php
 class PlaningDB extends Model{
+    //constructeur  planing
     public function construct(){
         parent::__construct();
     }
+    //la fonction ajout planing
     public function addPlaninig(PlaningC $planing){
         $sql="INSERT INTO Planning VALUES(NULL,'".$planing->getDatePl()."','".$planing->getHeureDebPl()."','".$planing->getHeureFinPl()."','".$planing->getIdM()."')";
         if($this->db!=null){
@@ -11,6 +13,7 @@ class PlaningDB extends Model{
             return null;
         }
     }
+    // la fonction liste des planing 
     public function listepl(){
         $sql="SELECT * FROM Planning";
         if($this->db!=null){
