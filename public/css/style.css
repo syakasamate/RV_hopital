@@ -1,14 +1,18 @@
-a{
-   text-decoration: none;
-     color: white;
-    font-weight: bold;
-    background-color: red; 
-    font-size: 20px;
-    text-align: center;
-    
+p{
+   font-weight: bold; 
+   color: red;
 }
 li{
     text-align: center;
+    font-size: 120%;
+    text-decoration: none;
+  
+}
+a{
+    text-decoration: none;
+    color: blue;
+    text-align: center;
+    background-color: azure;
 }
 .container{
     margin-top: 8%;
