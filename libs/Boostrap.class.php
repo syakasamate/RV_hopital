@@ -2,7 +2,7 @@
  class Boostrap{
    
     public function  __construct(){
-           $var=Null;
+           $var=null;
            $var= new Model();
            //Recuperation de  l'url
            $bimd='Users/medical.jpg';
