@@ -6,8 +6,9 @@ class Planing extends Controller{
     public function construct(){
         parent::__construct();
     }
-    //fonction ajout planing 
+    //methode  ajout planing 
 public function addPl(){
+    //Intanciation du model
     $addpl=new PlaningDB();
             if(isset($_POST['envoyer'])){
             $DatePl=$_POST['datePl'];
@@ -16,17 +17,19 @@ public function addPl(){
             $nomMed=$_POST['nomMed'];
            $data['ok']=0;
             if(!empty($DatePl)&&!empty( $heureDebPl)&&!empty($heureDebPl)){
+                //Intanciation du class
                 $planing= new PlaningC();
                 $planing->setDatePl( $DatePl);
                 $planing-> setHeureDebPl($heureDebPl);
                 $planing->setHeureFinPl($heureFinPl);
                 $planing->setIdM($nomMed);
+                //appel à la fonction ajout planing 
                 $addpl->addPlaninig($planing);
         
            
 
             }
-            //liste des medcin
+            //liste des medecin
             $listMed=new  MedcinDB();
             $data['list']=$listMed->listMedcin();
             return $this->view->load("planing/add.php",$data);
