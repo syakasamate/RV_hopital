@@ -31,7 +31,7 @@ foreach($data as $pa){
         <td>$patient[Adresse_p]</td>
         <td>$patient[Email_p]</td>"?>
         <td><a href="<?php  echo URL.'Patient/edit/'.$patient[0];?>">Editer</a> </td>
-        <td><a href="<?php  echo URL.'Patient/delete/'.$patient[0];?>">Delete</a> </td>
+        <td><a href="<?php  echo URL.'Patient/delete/'.$patient[0];?>"onclick="return confirm('Etes vous sur de vouloir supprimer ce Patient ?');">Delete</a> </td>
         <?php
       echo" </tr> ";
     }

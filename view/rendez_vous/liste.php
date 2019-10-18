@@ -25,7 +25,7 @@ foreach($data as $pa){
         <td>$rv[3]</td>
         <td>$rv[4]</td>"?>
         <td><a href="<?php  echo URL.'RendezVous/edit/'.$rv[0];?>">Editer</a> </td>
-        <td><a href="<?php  echo URL.'RendezVous/delete/'.$rv[0];?>">Delete</a> </td>
+        <td><a href="<?php  echo URL.'RendezVous/delete/'.$rv[0];?>"onclick="return confirm('Etes vous sur de vouloir supprimer ce Rendez-vous ?');">Delete</a> </td>
         <?php
        echo  "</tr> ";
     }
