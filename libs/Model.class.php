@@ -16,7 +16,7 @@ class Model{
         $database=DataBaseConfig::params()[3];
     
          $dbn="mysql:host=$host;dbname=$database";
-        $this->db=new PDO($dbn,$user,$pasword,
+        $this->db=new PDO($dbn,$user,$pasword, 
    array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION) );
         
         } catch (PDOException  $e) {

@@ -9,15 +9,39 @@
            if($_GET['url']==$bimd){
                require_once'Users/medical.jpg';
            }
+           
            $img='public/css/style.css';
-           if($_GET['url']==$img){
+           $img1='public/css/style2.css';
+            $css='Patient/public/css/style.css';
+             $d='Domaine/public/css/style2.css';
+             $ser='Service/public/css/style.css';
+               $m='Medcin/public/css/style2.css';
+               $p='Planing/public/css/style.css';
+               $se='Secretaire/public/css/style2.css';
+               $r='RendezVous/public/css/style.css';
+           if($_GET['url']==$img1||$_GET['url']==$d||$_GET['url']==$ser||$_GET['url']==$m||
+           $_GET['url']==$se||$_GET['url']==$p||$_GET['url']==$r){
+            require_once'public/css/style2.css';
+           }
+           if($_GET['url']==$img||$_GET['url']==$css){
             require_once'public/css/style.css';
            }
+           $js='public/js/style.js';
+             
+           if($_GET['url']==$js){
+                 require_once'public/js/style.js';
+           }
+           $serv='Service/public/js/bootstrap.min.css';
+           $med='Medcin/public/js/bootstrap.min.css';
+           $dom='Domaine/public/js/bootstrap.min.css';
+           $pl='Planing/public/js/bootstrap.min.css';
+           $sec='Secretaire/public/js/bootstrap.min.css';
            $modif='Patient/public/js/bootstrap.min.css';
            $rt='public/js/bootstrap.min.css';
            $rv='RendezVous/public/js/bootstrap.min.css';
            
-             if($_GET['url']==$rt ||  $_GET['url']==$modif || $_GET['url']==$rv){
+             if($_GET['url']==$rt ||  $_GET['url']==$modif || $_GET['url']==$rv ||$_GET['url']==$serv ||$_GET['url']==$med
+             ||$_GET['url']==$dom ||$_GET['url']==$pl||$_GET['url']==$sec){
                require_once'public/js/bootstrap.min.css';
                
            }
