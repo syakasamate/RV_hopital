@@ -1,14 +1,37 @@
-<?php require_once'view/head.php';
+<?php require_once'view/head1.php';
+require_once'view/headAdmin.php';
  ?>
-	<body>
-		<div class="navbar navbar-expand-lg navbar-light bg-light  col-md-offset-3">
-			<ul class="nav navbar-nav ">
-				<li><a href="<?php echo URL.'Secretaire/addSec';?>" >Ajout Secretaire </a></li>
-				<li><a href="<?php echo URL.'Medcin/addM';?>" >Ajout Medecin </a></li>
-				<li><a href="<?php echo URL.'Domaine/addD';?>" >Ajout Domaine </a></li>
-				<li><a href="<?php echo URL.'Service/addS';?>" >Ajout Service </a></li>
-            </ul>
-		</div>
 	
-	</body>
+</head>
+<body>
+
+
+
+  <div class="container" >
+            <div class=" row mt-8 col-md-offset-2  col-md-10">
+                <div class="col-md-2 bg-info">
+				   le nombre de secretaire est de <h3><?= $data?></h3>
+				   
+                </div>
+                <div class="col-md-2 bg-warning">
+				le nombre de Medecin est de <h3><?= $dat?></h3>
+                </div>
+                <div class="col-md-2 bg-success">
+					le nombre de Service est de <h3><?= $donne?></h3>
+				</div>
+				<div class="col-md-2 bg-primary">
+					le nombre de Domaine est de <h3><?= $donne1?></h3>
+                </div>
+</div>
+</div>
+
+</div>
+
+</body>
 </html>
+
+
+
+
+
+	

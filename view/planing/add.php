@@ -1,11 +1,32 @@
 <?php require_once'view/head.php';
- ?>
-<body  class="card text-white bg-info">
-<div class="container col-md-7 col-md-offset-2">
+ require_once'view/headMedecin.php';
+ $donne=$donne+1;
+ $r=sprintf("%05d",$donne);
+  ?>
+
+<body  class="">
+<div class="container col-md-5 col-xs-9 col-md-offset-3" style="margin-top:-500px; ">
     <div class="panel panel-info">
     <div class="panel-heading">Ajout Planing</div>
     <div class="panel-body">
-    <form action="<?php echo URL.'Planing/addPl';?>"   method="post">
+    <?php
+					if(!empty($dat)){
+						if ($dat != 0){
+                            ?>
+                            <div class="alert alert-success">Données ajoutées!</div>
+                            <?php
+						}else{
+                            ?>
+                            <div class="alert alert-danger">Erreur!</div>
+                            <?php
+                        }
+                        }
+       ?>
+    <form action="<?php echo URL.'Planing/addPl';?>"   method="post" >
+    <div class="form-group">
+    <label for="" class="form control-label">Code Planing </label>
+    <input type="texte" class="form-control" name="codePl"  value="MD-<?= $r?>" readonly>
+    </div>
     <div class="form-group">
     <label for="" class="form control-label">Date Planing</label>
     <input type="date" class="form-control" name="datePl">
@@ -26,7 +47,7 @@
     foreach($serv as $service){
       ?>
         <option value=""></option>
-        <option value="<?php  echo $service[0];?>"><?=$service[1]?></option>
+        <option value="<?php  echo $service[0];?>"><?=$service[2]?></option>
         <?php
     }
 }
@@ -34,6 +55,7 @@
     </select>
     </div>
     <input type="submit" value="Enregistrer" name="envoyer"  class="btn btn-primary">
+    <button type="reset" class="btn btn-warning"> Annuler</button>
     </form>
     </div>
     </div>

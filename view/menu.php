@@ -1,17 +1,16 @@
-<?php 
-
-require_once'view/head.php';
-
+<?php require_once'view/head.php';
+require_once'view/headS.php';
  ?>
-	<body class="card text-white bg-success ">
-		<div class="navbar navbar-default navbar-fixed-top   col-md-offset-3">
-			<ul class="nav navbar-nav navbar-toggle collapsed ">
-				<li><a href="<?php echo URL.'Patient/addP';?>" >Ajout Patient </a></li>
-				<li><a href="<?php echo URL.'Patient/listeP';?>" >Liste Patients</a></li>
-				<li><a href="<?php echo URL.'RendezVous/addR';?>">Ajout Rendez_vous</a></li>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<body>
+	<div id="mySidenav" class="sidenav">
+  <h4 id="about"> Le nombre de Patient Enregistré est de <?= $data?>  </h4>
+  <h4 id="blog"> Le nombre de Rendez_Vous Fixé est de <?= $dat?> </h4>
+  <h5 id="projects"> BIENVENU SUR LA PAGES DES SACRETAIRES </h5>
 
-            </ul>
-		</div>
-	
-	</body>
+</div>
+
+
+</body>
 

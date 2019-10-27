@@ -1,13 +1,14 @@
 <?php require_once'view/head.php';
+require_once'view/headMedecin.php';
  ?>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<body>
-		<div class="navbar navbar-expand-lg navbar-light bg-light  col-md-offset-3">
-			<ul class="nav navbar-nav ">
-				<li><a href="<?php echo URL.'RendezVous/listerv';?>" >liste Rendez_Vous </a></li>
-				 <li><a href="<?php echo URL.'Planing/addPl';?>" >Ajout de planing  </a></li>
+    <div id="mySidenav" class="sidenav">
+  <h5 id="projects"> BIENVENU SUR LA PAGES DES MEDECINS </h5>
 
-            </ul>
-		</div>
-	
+</div>
+
+	    
 	</body>
 </html>

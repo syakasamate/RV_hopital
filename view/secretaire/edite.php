@@ -1,33 +1,37 @@
 <?php require_once'view/head.php';
-require_once'view/headAdmin.php';
-$dat=$dat+1;
-$r=sprintf("%05d",$dat);
+foreach($dat as $sec ){
+    $sec[0];
+}
  ?>
 <body  class="card text-white bg-info" >
-<div class="container col-md-6 col-xs-10 col-md-offset-3" style="margin-top:-900px;">
+<div class="container col-md-9 col-md-offset-2">
     <div class="panel panel-info">
-    <div class="panel-heading">Ajout Secretaire</div>
+    <div class="panel-heading"> Modification Secraitere</div>
     <div class="panel-body">
-    <form action="<?php echo URL.'Secretaire/addSec';?>"   method="post">
+    <form action="<?php echo URL.'Secretaire/update';?>"   method="post">
     <div class="form-group">
-    <label for="" class="form control-label">Code Secretaire</label>
-    <input type="text" class="form-control" name="codeSec" value="SC-<?= $r?>" readonly>
+    <label for="" class="form control-label">ID secretaire</label>
+    <input type="text" class="form-control" name="idSec" value="<?= $sec[0]?>" readonly>
+    </div>
+    <div class="form-group">
+    <label for="" class="form control-label">CODE Secretaire</label>
+    <input type="text" class="form-control" name="codeSec" value="<?= $sec[1]?>" readonly>
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Secretaire</label>
-    <input type="text" class="form-control" name="nomSec">
+    <input type="text" class="form-control" name="nomSec" value="<?= $sec[2]?>">
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Prenom Secretaire</label>
-    <input type="text" class="form-control" name="prenomSec">
+    <input type="text" class="form-control" name="prenomSec" value="<?=  $sec[3]?>">
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Tel Secretaire</label>
-    <input type="text" class="form-control" name="telSec">
+    <input type="text" class="form-control" name="telSec" value="<?=  $sec[4]?>">
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Email Secretaire</label>
-    <input type="text" class="form-control" name="emailSec">
+    <input type="text" class="form-control" name="emailSec" value="<?=  $sec[5]?>">
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Service</label>
@@ -45,9 +49,9 @@ $r=sprintf("%05d",$dat);
     </select>
     </div>
     
-    <input type="submit" value="Enregistrer" name="envoyer"  class="btn btn-primary col-md-offset-3">
+    <input type="submit" value="Modifier" name="Modifier"  class="btn btn-primary col-md-offset-3">
     <button type="reset" class="btn btn-warning"> Annuler</button>
-
+    <button  class="btn btn-info"> <a href="<?php echo URL.'Secretaire/listeSec';?>"></a> Retour</button>
     </form>
     </div>
     </div>
