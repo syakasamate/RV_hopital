@@ -2,8 +2,16 @@
             ini_set("display_errors",1);
             error_reporting(E_ALL);
             session_start();
+            //les depandances
           require_once'model/UserDAO.php';
-            require_once'entities/User.class.php';
+          require_once'model/SecretaireDAO.php';
+          require_once'model/MedcinDAO.php';
+          require_once'model/ServiceDAO.php';
+          require_once'model/DomaineDAO.php';
+          require_once'model/IPatientDAO.php';
+          require_once'model/Rendez_VousDAO.php';
+         require_once'entities/User.class.php';
+
         class Users extends Controller {
             
             public function construct(){
@@ -47,14 +55,31 @@
             }
             
         }
+        //fonction menu secretaire 
                 public function menu(){
-                
-                return $this->view->load('menu.php');
+                    $addr=new RendezVousDB ();
+                    $dat=$addr->nbRv();
+                    $pdb=new PatientDB();
+                    $data=$pdb->nbPa();
+                return $this->view->load('menu.php',$data,$dat);
                     }
+            //fonction menu admin
                 public function menuA(){
-                    return $this->view->load('menuA.php');
+                    $nbsec=new SecretaireDB();
+                    $nbserv=new ServiceDB();
+                    $nbmed=new MedcinDB();
+                    $nbdom=new DomaineDB();
+                    $data=$nbsec->nbSec();
+                    $dat=$nbmed->nbMed();
+                    $donne=$nbserv->nbServ();
+                    $donne1=$nbdom->nbdom();
+        
+                    
+                    return $this->view->load('menuA.php',$data,$dat,$donne,$donne1);
                     }
+                //fonction menu Medcin
                     public function menuM(){
+
                         return $this->view->load('menuM.php');
                 }
         }

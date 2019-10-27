@@ -4,14 +4,15 @@ error_reporting(E_ALL);
 require_once'model/IPatientDAO.php';
 require_once'entities/Patient.class.php';
 class Patient  extends Controller{
-    
+
     public function  construct(){
         parent::__construct();
     }
     public function addP(){
-       $pdb=new PatientDB();     
+       $pdb=new PatientDB(); 
+       $dat=0;    
        if(isset($_POST['envoyer'])){
-           $data['ok']=0;
+            $code=$_POST['codeP'];
            $nom=$_POST['nomP'];
            $prenom=$_POST['prenomP'];
            $age=$_POST['ageP'];
@@ -19,27 +20,27 @@ class Patient  extends Controller{
            $tel=$_POST['telP'];
            $adresse=$_POST['adresseP'];
            $email=$_POST['emailP'];
+         
            if(!empty($nom)&&!empty($prenom)&&!empty($age)&&!empty($genre)&&!empty($tel)&&!empty($email)
-            &&!empty($prenom)&& $pdb->telP($tel)==1 && $pdb->emailvalid($email)){
+            &&!empty($prenom)&& $pdb->telP($tel) && $pdb->emailvalid($email)){
                $patientObjet= new PatientC();
                $patientObjet->setNomP($nom);
+               $patientObjet->setCodeP($code);
                $patientObjet->setPrenomP($prenom);
                $patientObjet->setAgeP($age);
                $patientObjet->setGenreP($genre);
                $patientObjet->setTelP($tel);
                $patientObjet->setAdresseP($adresse);
                $patientObjet->setEmailP($email);
-       $ok=$pdb->addpatient($patientObjet);
-               $data['ok']=$ok;
-           }else{
-               ?>
-            <p class="text-danger"><?php echo "Veillez Bien Remplir le Formulaire ";?></p>
-            <?php
+               $dat=$pdb->addpatient($patientObjet);
+                
+          
         }
-        
-         return  $this->view->load("patient/add.php");
+               $data=$pdb->nbPa();
+         return  $this->view->load("patient/add.php",$data,$dat);
        }else{
-        return $this->view->load("patient/add.php");
+        $data=$pdb->nbPa();
+        return $this->view->load("patient/add.php",$data);
        }
 
     }
@@ -52,6 +53,7 @@ class Patient  extends Controller{
             && !empty($emailP)) {
                 $patientObject = new PatientC();
                 $patientObject->setIdP($idP);
+                $patientObject->setCodeP($codeP);
                 $patientObject->setNomP($nomP);
                 $patientObject->setPrenomP($prenomP);
                 $patientObject->setAgeP($ageP);
@@ -59,6 +61,7 @@ class Patient  extends Controller{
                 $patientObject->setAdresseP($adresseP);
                 $patientObject->setTelP($telP);
                 $patientObject->setEmailP($emailP);
+                
                 $ok = $pdb->updatePatient($patientObject);
                 $data['liste']=$ok;
             }
@@ -68,8 +71,8 @@ class Patient  extends Controller{
     }
    public function listeP(){
     $pdb=new PatientDB();  
-     $data['liste']=$pdb->listepatient();
-       return $this->view->load("patient/liste.php",$data);
+     $data['list']=$pdb->listepatient();
+    return $this->view->load(LISTEP,$data);
     }
     public function edit($idP){
 			
@@ -87,6 +90,23 @@ class Patient  extends Controller{
         $pdb-> deletePatient($idP);
         //Retour vers la liste
         return $this->listeP();
+    }
+    // fonction rechere patient
+    public function recherche(){
+          $idP=$_GET['recherche'];
+         $pdb=new PatientDB();    
+         $dat['list']=$pdb->recherche($idP);
+         if( $dat['list']){
+        
+        return $this->view->load(LISTEP,$dat);
+        }else{
+            $dat['list']="le code recherchez n'existe pas!";
+            $pdb=new PatientDB();  
+            $data['liste']=$pdb->listepatient();
+            return $this->view->load(LISTEP,$data,$dat);
+
+        }
+     
     }
     
 }

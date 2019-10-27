@@ -15,6 +15,7 @@
         //Intanciation du model
         $addr=new RendezVousDB ();
         if(isset($_POST['envoyer'])){
+            $codeRv=$_POST['codeRv'];
             $heureRv=$_POST['heureRv'];
             $dateRv=$_POST['dateRv'];
             $nomM=$_POST['nomM'];
@@ -22,12 +23,13 @@
             if(!empty($heureRv)&& !empty($dateRv)&& !empty($nomM) && !empty($nomP)){
                 //Intanciation du class
                 $rv= new  RendezVousC();
+                $rv->setcodeRv($codeRv);
                 $rv->setheureRv($heureRv);
                 $rv->setDateRv($dateRv);
                 $rv->setIdM($nomM);
                 $rv->setIdP($nomP);
                 //appel à la fonction ajout
-                $addr->addRv($rv);
+                $donne1=$addr->addRv($rv);
                 
             }
             //liste deroulante medecin
@@ -36,13 +38,15 @@
             //liste deroulante patient 
             $listP=new PatientDB();
             $dat['list']=$listP->listepatient();
-            return $this->view->load("rendez_vous/add.php",$data,$dat);
+            $donne=$addr->nbRv();
+            return $this->view->load("rendez_vous/add.php",$data,$dat,$donne,$donne1);
         }else{
             $listM=new MedcinDB();
             $data['list']=$listM->listMedcin();
             $listP=new PatientDB();
             $dat['list']=$listP->listepatient();
-            return $this->view->load("rendez_vous/add.php",$data,$dat); 
+            $donne=$addr->nbRv();
+            return $this->view->load("rendez_vous/add.php",$data,$dat,$donne); 
         }
     
     }
@@ -50,7 +54,7 @@
     public function listerv(){
         $rvdb=new RendezVousDB ();  
         $data['liste']=$rvdb->listerv();
-        return $this->view->load("rendez_vous/liste.php",$data);
+        return $this->view->load(LISTERV,$data);
         
 
         }
@@ -62,6 +66,7 @@
                 extract($_POST);
                 if(!empty($idRv) && !empty($heureRv)&& !empty($dateRv)  && !empty($nomM)) {
                     $rv = new  RendezVousC();
+                    $rv-> setCodeRv($codeRv);
                     $rv-> setIdRv($idRv);
                     $rv->setheureRv($heureRv);
                     $rv->setDateRv($dateRv);
@@ -98,6 +103,23 @@
             //Retour vers la liste
             return $this->listerv();
         }
+          // fonction rechere rendez_vous
+    public function recherche(){
+        $idRv=$_GET['recherche'];
+        $rdb=new RendezVousDB();  
+        $dat['list']=$rdb->recherche($idRv);
+       if( $dat['list']){
+      
+      return $this->view->load(LISTERV,$dat);
+      }else{
+          $dat['list']="le code recherchez n'existe pas!";
+          $rvdb=new RendezVousDB ();  
+        $data['liste']=$rvdb->listerv();
+          return $this->view->load(LISTERV,$data,$dat);
+
+      }
+   
+  }
 
     }
     ?>
