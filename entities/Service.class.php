@@ -2,7 +2,16 @@
 class  ServiceC{
     private $idS;
     private $nomS;
+   private $codeS;
 
+
+	public function getCodeS() {
+		return $this->codeS;
+	}
+
+	public function setCodeS($codeS) {
+		$this->codeS = $codeS;
+	}
   
 
 
@@ -11,7 +20,7 @@ class  ServiceC{
 	}
 
 	public function setIdS($idS) {
-		$this->idD = $idS;
+		$this->idS =$idS;
 	}
 
 	public function getNomS() {

@@ -1,10 +1,20 @@
 <?php
 class  DomaineC{
-    private $idD;
+	private $idD;
+	private $codeD;
+
+
+	
     private $nomD;
 
   
+	public function getCodeD() {
+		return $this->codeD;
+	}
 
+	public function setCodeD($codeD) {
+		$this->codeD=$codeD;
+	}
 
 	public function getIdD() {
 		return $this->idD;

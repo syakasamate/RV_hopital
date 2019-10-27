@@ -1,11 +1,18 @@
 <?php
 class PlaningC{
-        private  $idPl;
+		private  $idPl;
+		private $codePl;
         private $datePl;
         private $heureDebPl;
 		private $heureFinPl;
 		private $idM;
-
+		public function getCodePl() {
+			return $this->codePl;
+		}
+	
+		public function setCodePl($codePl) {
+			$this->codePl = $codePl;
+		}
 	public function getIdM() {
 		return $this->idM;
 	}

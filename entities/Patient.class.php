@@ -2,8 +2,7 @@
 
 class PatientC{
 	private $idP;
-
-	
+     private $CodeP;
     private $nomP;
     private $prenomP;
 	private $ageP;
@@ -31,6 +30,13 @@ class PatientC{
 
 	public function setIdP($idP) {
 		$this->idP = $idP;
+	}
+	public function getCodeP() {
+		return $this->CodeP;
+	}
+
+	public function setCodeP($CodeP) {
+		$this->CodeP =$CodeP;
 	}
 
 	public function getNomP() {

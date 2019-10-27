@@ -1,14 +1,22 @@
 <?php
 class RendezVousC{
     //les attribut du table Rendez-vous
-    private $idRv;
+	private $idRv;
+	private $CodeRv;
     private $heureRv;
     private $dateRv;
     private $idM;
     private $idP;
 
 
-    //getter et Setter
+	//getter et Setter
+	public function  getCodeRv() {
+		return $this->CodeRv;
+	}
+
+	public function setCodeRv($CodeRv) {
+		$this->CodeRv=$CodeRv;
+	}
 	public function getIdRv() {
 		return $this->idRv;
 	}

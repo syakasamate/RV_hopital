@@ -1,6 +1,7 @@
 <?php
 class MedcinC{
-    private $idM;
+	private $idM;
+	private $codeM;
     private $nomM;
     private $prenomM;
     private $telM;
@@ -16,7 +17,13 @@ class MedcinC{
 	public function setIdM($idM) {
 		$this->idM = $idM;
 	}
+    public function getCodeM() {
+		return $this->codeM;
+	}
 
+	public function setCodeM($codeM) {
+		$this->codeM=$codeM;
+	}
 	public function getNomM() {
 		return $this->nomM;
 	}
