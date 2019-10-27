@@ -7,7 +7,7 @@ public function construct(){
 }
   //fonction ajout Rendez_vous
 public function addRv(RendezVousC $rv){
-    $sql="INSERT INTO Rv VALUES(NULL,'".$rv->getHeureRv()."','".$rv->getDateRv()."','".$rv->getIdM()."','".$rv->getIdP()."')";
+    $sql="INSERT INTO Rv VALUES(NULL,'".$rv->getCodeRv()."','".$rv->getHeureRv()."','".$rv->getDateRv()."','".$rv->getIdM()."','".$rv->getIdP()."')";
     if($this->db!=null){
         return $this->db->exec($sql);;
     }
@@ -23,6 +23,16 @@ public function listerv(){
 
     }
 
+    }
+    //fonction  recherche  rendez_ous
+    public function recherche($recherche){
+        $sql="SELECT * FROM Rv  WHERE  code_Rv ='$recherche'";
+        if($this->db!= null)
+        {
+            return $this->db->query($sql)->fetchAll();
+        }else{
+            return null;
+        }
     }
     //fonction delete rv
     public function deleterv($idRv){
@@ -51,6 +61,7 @@ public function listerv(){
     //fonction de modification
     public function updateRv(RendezVousC $rv){
         $sql = "UPDATE Rv SET Heure_rv = '".$rv->getHeureRv()."',
+                         code_Rv ='".$rv->getCodeRv()."',
                           Date_rv ='".$rv->getDateRv()."',
                          Id_Med_Medcin='".$rv->getIdM()."',
                          id_P_Patient='".$rv->getIdP()."'
@@ -63,6 +74,16 @@ public function listerv(){
             return null;
         }
     }
+    public function nbRv(){
+        $sql="SELECT *  FROM Rv";
+        if($this->db!=null){
+         return $this->db->query($sql)->rowCount();
+        }else{
+            return null;
+    
+        }
+    
+        }
 
  }
 ?>

@@ -10,7 +10,7 @@
         
         //la fonction ajout patient 
         public function addpatient(PatientC $patient){
-            $sql="INSERT INTO Patient  VALUES(null,'".$patient->getNomP()."','".$patient->getPrenomP()."','".$patient->getAgeP()."'
+            $sql="INSERT INTO Patient  VALUES(null,'".$patient->getCodeP()."','".$patient->getNomP()."','".$patient->getPrenomP()."','".$patient->getAgeP()."'
             ,'".$patient->getGenreP()."','".$patient->getTelP()."','".$patient->getAdresseP()."','".$patient->getEmailP()."')";
             if($this->db!=null){
             return $this->db->exec($sql);
@@ -69,6 +69,7 @@
             //la fonction modifier patient
             public function updatePatient(PatientC $patient){
                 $sql = "UPDATE Patient SET Nom_p = '".$patient->getNomP()."',
+                                 Cod_p = '".$patient->getCodeP()."',
                                 Prenom_p = '".$patient->getPrenomP()."',
                                 Age_p='".$patient->getAgeP()."',
                                 Genre_p='".$patient->getGenreP()."',
@@ -85,5 +86,24 @@
                     return null;
                 }
             }
+           public function recherche($recherche){
+                $sql="SELECT * FROM Patient WHERE  Cod_p  ='$recherche'";
+                if($this->db!= null)
+                {
+                    return $this->db->query($sql)->fetchAll();
+                }else{
+                    return null;
+                }
+            }
+            public function nbPa(){
+                $sql="SELECT *  FROM Patient";
+                if($this->db!=null){
+                 return $this->db->query($sql)->rowCount();
+                }else{
+                    return null;
+            
+                }
+            
+                } 
     }
     ?>
