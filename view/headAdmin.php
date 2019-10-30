@@ -17,7 +17,7 @@
   
 </div>
 <div class="navbar">
-  <h3>HOPITAL LA PAIX</h3>
+  <h3> CENTRE HOSPITALIER LA PAIX</h3>
   <div class="subnav">
     <button class="subnavbtn">DOMAINE</i></button>
     <div class="subnav-content">
@@ -39,7 +39,13 @@
     <a href="<?php echo URL.'Medcin/listeM';?>" >LiSTE MEDECIN </a>
     </div>
   </div> 
-  
+  <div class="subnav">
+    <button class="subnavbtn">PLANING</button>
+    <div class="subnav-content">
+    <a href="<?php echo URL.'Planing/addPl';?>" >Ajout Planing</a>
+    <a href="<?php echo URL.'Planing/listePl';?>">Liste Planing</a>
+    </div>
+  </div> 
   <div class="subnav">
     <button class="subnavbtn">SECRETAIRE</i></button>
     <div class="subnav-content">
