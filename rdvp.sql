@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 18 Octobre 2019 à 00:18
--- Version du serveur :  5.7.26-0ubuntu0.18.04.1
--- Version de PHP :  7.2.19-0ubuntu0.18.04.1
+-- Généré le :  Mer 30 Octobre 2019 à 02:48
+-- Version du serveur :  5.7.27-0ubuntu0.18.04.1
+-- Version de PHP :  7.3.9-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `rdvp`
+-- Base de données :  `RV_hopital`
 --
 
 -- --------------------------------------------------------
@@ -36,8 +36,18 @@ CREATE TABLE `Domaine` (
 --
 
 INSERT INTO `Domaine` (`Id_Dom_Domaine`, `Nom_Dom_Domaine`) VALUES
-(5, 'cardiologue'),
-(6, 'chirurgien');
+(1, 'Insuffisance cardiaque'),
+(2, 'Génétique cardiaque et maladies rares'),
+(3, 'Transplantation et assistance cardiaque'),
+(4, 'Médico-chirurgicale'),
+(5, 'Obstétrique'),
+(6, 'Echographie'),
+(7, 'Chirurgie pédiatrique'),
+(8, 'Neuropédiatrie'),
+(9, 'Urgences pédiatriques'),
+(10, 'Endoscopie urologique'),
+(11, 'Urodynamique et Uro-gynécologie'),
+(12, 'Urologie pédiatrique');
 
 -- --------------------------------------------------------
 
@@ -60,8 +70,18 @@ CREATE TABLE `Medcin` (
 --
 
 INSERT INTO `Medcin` (`Id_Med_Medcin`, `Nom_Med_Medcin`, `Prenom_Med_Medcin`, `Tel_Med_Medcin`, `Email_Med_Medcin`, `Id_Serv_Service`, `Id_Dom_Domaine`) VALUES
-(10, 'gueye', 'saliou', '779451231', 'gueya@gmail.com', 4, 5),
-(11, 'seydi', 'aby', '769801254', 'aby@gmail.com', 5, 6);
+(1, 'SY ', 'Mame Mor', '778521486', 'mor@mame.sn', 1, 1),
+(2, 'Sall', 'Fallou', '785245621', 'sall@fallou.sn', 1, 2),
+(3, 'Dione', 'Abdou Khadre', '752142356', 'dione@abdou.sn', 1, 3),
+(4, 'Sarr', 'Fatou', '779582145', 'sarr@fatou.sn', 2, 4),
+(5, 'Diop', 'Amy', '765412369', 'amy@diop.sn', 2, 5),
+(6, 'Seye', 'Nafy', '768412369', 'seye@nafy.sn', 2, 6),
+(7, 'Diouf ', 'Awa', '775896321', 'diouf@awa.sn', 3, 7),
+(8, 'Faye', 'Birame', '772365453', 'faye@birame.sn', 3, 8),
+(9, 'Ndiaye', 'Maïmouna', '7758956241', 'nass@ndiaye.sn', 3, 9),
+(10, 'Touré', 'Yoro', '778964125', 'yoro@touré.sn', 4, 10),
+(11, 'Sow', 'Kadia', '775248796', 'sow@kadia.sn', 4, 11),
+(12, 'Samaté', 'Siaka', '773664125', 'siaka@samate.sn', 4, 12);
 
 -- --------------------------------------------------------
 
@@ -80,14 +100,6 @@ CREATE TABLE `Patient` (
   `Email_p` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `Patient`
---
-
-INSERT INTO `Patient` (`id_P_Patient`, `Nom_p`, `Prenom_p`, `Age_p`, `Genre_P`, `Tel_p`, `Adresse_p`, `Email_p`) VALUES
-(4, 'cisse', 'falou', '21 ans', 'M', '772304521', 'Dakar', 'falou@gmail.com'),
-(5, 'samb', 'sire', '19 ans', 'F', '789201336', 'pikine', 'samb@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -96,7 +108,7 @@ INSERT INTO `Patient` (`id_P_Patient`, `Nom_p`, `Prenom_p`, `Age_p`, `Genre_P`, 
 
 CREATE TABLE `Planning` (
   `Id_Pl_Planning` int(40) NOT NULL,
-  `Date_Pl_Planning` date DEFAULT NULL,
+  `Jour_Pl_Planning` varchar(50) DEFAULT NULL,
   `Heure_Deb_Planning` time DEFAULT NULL,
   `Heure_Fin_Planning` time DEFAULT NULL,
   `Id_Med_Medcin` int(40) DEFAULT NULL
@@ -106,9 +118,47 @@ CREATE TABLE `Planning` (
 -- Contenu de la table `Planning`
 --
 
-INSERT INTO `Planning` (`Id_Pl_Planning`, `Date_Pl_Planning`, `Heure_Deb_Planning`, `Heure_Fin_Planning`, `Id_Med_Medcin`) VALUES
-(3, '2019-10-01', '08:00:00', '15:00:00', 10),
-(4, '2019-10-01', '08:05:00', '14:00:00', 11);
+INSERT INTO `Planning` (`Id_Pl_Planning`, `Jour_Pl_Planning`, `Heure_Deb_Planning`, `Heure_Fin_Planning`, `Id_Med_Medcin`) VALUES
+(1, 'Lundi', '08:00:00', '12:00:00', 1),
+(2, 'Lundi', '15:00:00', '17:00:00', 2),
+(3, 'Mardi', '08:00:00', '12:00:00', 2),
+(4, 'Mardi', '15:00:00', '17:00:00', 1),
+(5, 'Mercredi', '08:00:00', '12:00:00', 3),
+(6, 'Mercredi', '15:00:00', '17:00:00', 3),
+(7, 'Jeudi', '08:00:00', '12:00:00', 2),
+(8, 'Jeudi', '15:00:00', '17:00:00', 3),
+(9, 'Vendredi', '08:00:00', '12:00:00', 1),
+(10, 'Vendredi', '15:00:00', '17:00:00', 3),
+(11, 'Lundi', '08:00:00', '12:00:00', 4),
+(12, 'Lundi', '15:00:00', '17:00:00', 5),
+(13, 'Mardi', '08:00:00', '12:00:00', 5),
+(14, 'Mardi', '15:00:00', '17:00:00', 4),
+(15, 'Mercredi', '08:00:00', '12:00:00', 6),
+(16, 'Mercredi', '15:00:00', '17:00:00', 6),
+(17, 'Jeudi', '08:00:00', '12:00:00', 5),
+(18, 'Jeudi', '15:00:00', '17:00:00', 6),
+(19, 'Vendredi', '08:00:00', '12:00:00', 4),
+(20, 'Vendredi', '15:00:00', '17:00:00', 6),
+(21, 'Lundi', '08:00:00', '12:00:00', 7),
+(22, 'Lundi', '15:00:00', '17:00:00', 8),
+(23, 'Mardi', '08:00:00', '12:00:00', 8),
+(24, 'Mardi', '15:00:00', '17:00:00', 7),
+(25, 'Mercredi', '08:00:00', '12:00:00', 9),
+(26, 'Mercredi', '15:00:00', '17:00:00', 9),
+(27, 'Jeudi', '08:00:00', '12:00:00', 8),
+(28, 'Jeudi', '15:00:00', '17:00:00', 9),
+(29, 'Vendredi', '08:00:00', '12:00:00', 7),
+(30, 'Vendredi', '15:00:00', '17:00:00', 9),
+(31, 'Lundi', '08:00:00', '12:00:00', 10),
+(32, 'Lundi', '15:00:00', '17:00:00', 11),
+(33, 'Mardi', '08:00:00', '12:00:00', 11),
+(34, 'Mardi', '15:00:00', '17:00:00', 10),
+(35, 'Mercredi', '08:00:00', '12:00:00', 12),
+(36, 'Mercredi', '15:00:00', '17:00:00', 12),
+(37, 'Jeudi', '08:00:00', '12:00:00', 11),
+(38, 'Jeudi', '15:00:00', '17:00:00', 12),
+(39, 'Vendredi', '08:00:00', '12:00:00', 10),
+(40, 'Vendredi', '15:00:00', '17:00:00', 12);
 
 -- --------------------------------------------------------
 
@@ -123,14 +173,6 @@ CREATE TABLE `Rv` (
   `Id_Med_Medcin` int(40) DEFAULT NULL,
   `id_P_Patient` int(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `Rv`
---
-
-INSERT INTO `Rv` (`Id_rv_rv`, `Heure_rv`, `Date_rv`, `Id_Med_Medcin`, `id_P_Patient`) VALUES
-(2, '08:00:00', '2019-10-01', 10, 4),
-(3, '08:45:00', '2019-10-01', 10, 5);
 
 -- --------------------------------------------------------
 
@@ -152,8 +194,10 @@ CREATE TABLE `secretaire` (
 --
 
 INSERT INTO `secretaire` (`Id_Secret_sercretaire`, `Nom_Secret_sercretaire`, `Prenom_Secret_sercretaire`, `Tel_Secret_sercretaire`, `Email_Secret_sercretaire`, `Id_Serv_Service`) VALUES
-(5, 'ndour', 'maty', '702301514', 'maty@gmail.com', 4),
-(6, 'sow', 'amadou', '789502123', 'sow@gmail.com', 5);
+(1, 'Sy', 'Fatou', '771819895', 'sy@fatou.sn', 1),
+(2, 'Diop', 'Aïcha', '771496589', 'aïcha@diop.sn', 2),
+(3, 'Sow', 'Oumou', '778963214', 'sow@oumou.sn', 3),
+(4, 'Sall', 'Maman', '78563214', 'sall@maman.sn', 4);
 
 -- --------------------------------------------------------
 
@@ -171,8 +215,10 @@ CREATE TABLE `Service` (
 --
 
 INSERT INTO `Service` (`Id_Serv_Service`, `Nom_Serv_Service`) VALUES
-(4, 'insuffisance_cardiaque'),
-(5, 'transplantation');
+(1, 'Cardiologie'),
+(2, 'Gynécologie - Obstétrique '),
+(3, 'Pédiatrie'),
+(4, 'Urologie');
 
 -- --------------------------------------------------------
 
@@ -192,9 +238,23 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `login`, `pasword`, `profil`) VALUES
-(1, 'secret015@gmail.com', '123', 'secretaire'),
-(2, 'admin@gmail.com', 'admin', 'admin'),
-(3, 'medcin@gmail.com', '123', 'medcin');
+(1, 'admin@gmail.com', 'admin', 'admin'),
+(2, 'secretaire1@gmail.com', 'secretaire1', 'secretaire'),
+(3, 'secretaire2@gmail.com', 'secretaire2', 'secretaire'),
+(4, 'secretaire3@gmail.com', 'secretaire3', 'secretaire'),
+(5, 'secretaire4@gmail.com', 'secretaire4', 'secretaire'),
+(6, 'medecin1@gmail.com', 'medecin1', 'medecin'),
+(7, 'medecin2@gmail.com', 'medecin2', 'medecin'),
+(8, 'medecin3@gmail.com', 'medecin3', 'medecin'),
+(9, 'medecin4@gmail.com', 'medecin4', 'medecin'),
+(10, 'medecin5@gmail.com', 'medecin5', 'medecin'),
+(11, 'medecin6@gmail.com', 'medecin6', 'medecin'),
+(12, 'medecin7@gmail.com', 'medecin7', 'medecin'),
+(13, 'medecin8@gmail.com', 'medecin8', 'medecin'),
+(14, 'medecin9@gmail.com', 'medecin9', 'medecin'),
+(15, 'medecin10@gmail.com', 'medecin10', 'medecin'),
+(16, 'medecin11@gmail.com', 'medecin11', 'medecin'),
+(17, 'medecin12@gmail.com', 'medecin12', 'medecin');
 
 --
 -- Index pour les tables exportées
@@ -262,42 +322,42 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `Domaine`
 --
 ALTER TABLE `Domaine`
-  MODIFY `Id_Dom_Domaine` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_Dom_Domaine` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `Medcin`
 --
 ALTER TABLE `Medcin`
-  MODIFY `Id_Med_Medcin` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_Med_Medcin` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `Patient`
 --
 ALTER TABLE `Patient`
-  MODIFY `id_P_Patient` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_P_Patient` int(40) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Planning`
 --
 ALTER TABLE `Planning`
-  MODIFY `Id_Pl_Planning` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_Pl_Planning` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT pour la table `Rv`
 --
 ALTER TABLE `Rv`
-  MODIFY `Id_rv_rv` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_rv_rv` int(40) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `secretaire`
 --
 ALTER TABLE `secretaire`
-  MODIFY `Id_Secret_sercretaire` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_Secret_sercretaire` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `Service`
 --
 ALTER TABLE `Service`
-  MODIFY `Id_Serv_Service` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id_Serv_Service` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- Contraintes pour les tables exportées
 --
