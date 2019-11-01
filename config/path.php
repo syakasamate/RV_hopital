@@ -7,5 +7,6 @@ define('LISTESEC','secretaire/liste.php');
 define('LISTES','service/liste.php');
 define('LISTEPL','planing/liste.php');
 define('LISTERV','rendez_vous/liste.php');
+define('USER','users/log.php');
 
 ?>
