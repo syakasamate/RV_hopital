@@ -19,17 +19,18 @@
             }
    //la fonction connection
         public function log(){
+            $erreur=false;
             if(isset($_POST['connecter'])){
             $udb= new userDB();
             $login=$_POST['login'];
             $password=$_POST['pasword'];
             $udb->login($login,$password);
-            $log=$udb->login($login,$password);
-            foreach($log as $pa){
+            $data=$udb->login($login,$password);
+            foreach($data as $pa){
                     $pa['id'];
             }
             //si la connection existe
-                if($log){
+                if($data){
                     $_SESSION['log']=true;
                     if($pa['profil']=='secretaire'){
                     header('Location:menu');
@@ -38,19 +39,22 @@
                     }else {
                         header('Location:menuM');
                     }
+                    
                 
                 }
                 else{
-                ?>
-                <p class="text-danger"><?php echo "Mauvais identifiant ou mot de passe";?></p>
-                <?php
+            
+                $data="Mauvaise login ou Mot de Passe";
+                return $this->view->load(USER,$data);
+
+                
             }
 
-            return $this->view->load('users/log.php');
+            return $this->view->load(USER);
             
             }else{
             
-            return $this->view->load('users/log.php');
+            return $this->view->load(USER);
             
             }
             
