@@ -6,6 +6,10 @@
            $var= new Model();
            //Recuperation de  l'url
            $bimd='Users/medical.jpg';
+           $cal='public/style/style.css';
+           if($_GET['url']==$cal){
+            require_once'public/style/style.css';
+        }
            if($_GET['url']==$bimd){
                require_once'Users/medical.jpg';
            }
