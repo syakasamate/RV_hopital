@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 18 Octobre 2019 à 00:18
+-- Généré le :  Ven 01 Novembre 2019 à 11:08
 -- Version du serveur :  5.7.26-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.19-0ubuntu0.18.04.1
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Domaine` (
   `Id_Dom_Domaine` int(40) NOT NULL,
+  `code_D` varchar(45) NOT NULL,
   `Nom_Dom_Domaine` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -35,9 +36,10 @@ CREATE TABLE `Domaine` (
 -- Contenu de la table `Domaine`
 --
 
-INSERT INTO `Domaine` (`Id_Dom_Domaine`, `Nom_Dom_Domaine`) VALUES
-(5, 'cardiologue'),
-(6, 'chirurgien');
+INSERT INTO `Domaine` (`Id_Dom_Domaine`, `code_D`, `Nom_Dom_Domaine`) VALUES
+(13, 'DOM-00001', 'Insuffisance_cardiaque'),
+(14, 'DOM-00002', 'transplantation'),
+(15, 'DOM-00003', 'cardiologue');
 
 -- --------------------------------------------------------
 
@@ -47,6 +49,7 @@ INSERT INTO `Domaine` (`Id_Dom_Domaine`, `Nom_Dom_Domaine`) VALUES
 
 CREATE TABLE `Medcin` (
   `Id_Med_Medcin` int(40) NOT NULL,
+  `code_Med` varchar(45) NOT NULL,
   `Nom_Med_Medcin` varchar(40) DEFAULT NULL,
   `Prenom_Med_Medcin` varchar(40) DEFAULT NULL,
   `Tel_Med_Medcin` varchar(40) DEFAULT NULL,
@@ -59,9 +62,9 @@ CREATE TABLE `Medcin` (
 -- Contenu de la table `Medcin`
 --
 
-INSERT INTO `Medcin` (`Id_Med_Medcin`, `Nom_Med_Medcin`, `Prenom_Med_Medcin`, `Tel_Med_Medcin`, `Email_Med_Medcin`, `Id_Serv_Service`, `Id_Dom_Domaine`) VALUES
-(10, 'gueye', 'saliou', '779451231', 'gueya@gmail.com', 4, 5),
-(11, 'seydi', 'aby', '769801254', 'aby@gmail.com', 5, 6);
+INSERT INTO `Medcin` (`Id_Med_Medcin`, `code_Med`, `Nom_Med_Medcin`, `Prenom_Med_Medcin`, `Tel_Med_Medcin`, `Email_Med_Medcin`, `Id_Serv_Service`, `Id_Dom_Domaine`) VALUES
+(1, 'MD-00001', 'gueye', 'aba', '778944556', 'gueya@gmail.com', 9, 13),
+(2, 'MD-00002', 'sow', 'aby', '769801254', 'sow@gmail.com', 10, 14);
 
 -- --------------------------------------------------------
 
@@ -71,6 +74,7 @@ INSERT INTO `Medcin` (`Id_Med_Medcin`, `Nom_Med_Medcin`, `Prenom_Med_Medcin`, `T
 
 CREATE TABLE `Patient` (
   `id_P_Patient` int(40) NOT NULL,
+  `Cod_p` varchar(45) NOT NULL,
   `Nom_p` varchar(40) DEFAULT NULL,
   `Prenom_p` varchar(40) DEFAULT NULL,
   `Age_p` varchar(40) DEFAULT NULL,
@@ -84,9 +88,10 @@ CREATE TABLE `Patient` (
 -- Contenu de la table `Patient`
 --
 
-INSERT INTO `Patient` (`id_P_Patient`, `Nom_p`, `Prenom_p`, `Age_p`, `Genre_P`, `Tel_p`, `Adresse_p`, `Email_p`) VALUES
-(4, 'cisse', 'falou', '21 ans', 'M', '772304521', 'Dakar', 'falou@gmail.com'),
-(5, 'samb', 'sire', '19 ans', 'F', '789201336', 'pikine', 'samb@gmail.com');
+INSERT INTO `Patient` (`id_P_Patient`, `Cod_p`, `Nom_p`, `Prenom_p`, `Age_p`, `Genre_P`, `Tel_p`, `Adresse_p`, `Email_p`) VALUES
+(1, 'PA-00001', 'cisse', 'fatou', '21ans', 'M', '783119445', 'plateau', 'falou@gmail.com'),
+(3, 'PA-00002', 'mmm', 'falou', '21ans', 'M', '774569887', 'plateau', 'parcellessire14@gmail.com'),
+(4, 'PA-00003', 'cisse', 'falou', '21ans', 'M', '774569887', 'pikine', 'fatim@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -96,6 +101,7 @@ INSERT INTO `Patient` (`id_P_Patient`, `Nom_p`, `Prenom_p`, `Age_p`, `Genre_P`, 
 
 CREATE TABLE `Planning` (
   `Id_Pl_Planning` int(40) NOT NULL,
+  `code_Pl` varchar(40) NOT NULL,
   `Date_Pl_Planning` date DEFAULT NULL,
   `Heure_Deb_Planning` time DEFAULT NULL,
   `Heure_Fin_Planning` time DEFAULT NULL,
@@ -106,9 +112,9 @@ CREATE TABLE `Planning` (
 -- Contenu de la table `Planning`
 --
 
-INSERT INTO `Planning` (`Id_Pl_Planning`, `Date_Pl_Planning`, `Heure_Deb_Planning`, `Heure_Fin_Planning`, `Id_Med_Medcin`) VALUES
-(3, '2019-10-01', '08:00:00', '15:00:00', 10),
-(4, '2019-10-01', '08:05:00', '14:00:00', 11);
+INSERT INTO `Planning` (`Id_Pl_Planning`, `code_Pl`, `Date_Pl_Planning`, `Heure_Deb_Planning`, `Heure_Fin_Planning`, `Id_Med_Medcin`) VALUES
+(1, 'MD-00001', '2019-10-27', '08:00:00', '14:00:00', 1),
+(2, 'PL-00002', '2019-10-10', '11:22:00', '11:22:00', 2);
 
 -- --------------------------------------------------------
 
@@ -118,8 +124,8 @@ INSERT INTO `Planning` (`Id_Pl_Planning`, `Date_Pl_Planning`, `Heure_Deb_Plannin
 
 CREATE TABLE `Rv` (
   `Id_rv_rv` int(40) NOT NULL,
-  `Heure_rv` time DEFAULT NULL,
-  `Date_rv` date DEFAULT NULL,
+  `code_Rv` varchar(45) NOT NULL,
+  `Date_Heur_Rv` datetime NOT NULL,
   `Id_Med_Medcin` int(40) DEFAULT NULL,
   `id_P_Patient` int(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -128,9 +134,9 @@ CREATE TABLE `Rv` (
 -- Contenu de la table `Rv`
 --
 
-INSERT INTO `Rv` (`Id_rv_rv`, `Heure_rv`, `Date_rv`, `Id_Med_Medcin`, `id_P_Patient`) VALUES
-(2, '08:00:00', '2019-10-01', 10, 4),
-(3, '08:45:00', '2019-10-01', 10, 5);
+INSERT INTO `Rv` (`Id_rv_rv`, `code_Rv`, `Date_Heur_Rv`, `Id_Med_Medcin`, `id_P_Patient`) VALUES
+(8, 'RV-00001', '2019-11-02 04:44:00', 1, 1),
+(9, 'RV-00001', '2019-11-01 14:25:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -140,6 +146,7 @@ INSERT INTO `Rv` (`Id_rv_rv`, `Heure_rv`, `Date_rv`, `Id_Med_Medcin`, `id_P_Pati
 
 CREATE TABLE `secretaire` (
   `Id_Secret_sercretaire` int(40) NOT NULL,
+  `code_Sec` varchar(45) NOT NULL,
   `Nom_Secret_sercretaire` varchar(40) DEFAULT NULL,
   `Prenom_Secret_sercretaire` varchar(40) DEFAULT NULL,
   `Tel_Secret_sercretaire` varchar(40) DEFAULT NULL,
@@ -151,9 +158,9 @@ CREATE TABLE `secretaire` (
 -- Contenu de la table `secretaire`
 --
 
-INSERT INTO `secretaire` (`Id_Secret_sercretaire`, `Nom_Secret_sercretaire`, `Prenom_Secret_sercretaire`, `Tel_Secret_sercretaire`, `Email_Secret_sercretaire`, `Id_Serv_Service`) VALUES
-(5, 'ndour', 'maty', '702301514', 'maty@gmail.com', 4),
-(6, 'sow', 'amadou', '789502123', 'sow@gmail.com', 5);
+INSERT INTO `secretaire` (`Id_Secret_sercretaire`, `code_Sec`, `Nom_Secret_sercretaire`, `Prenom_Secret_sercretaire`, `Tel_Secret_sercretaire`, `Email_Secret_sercretaire`, `Id_Serv_Service`) VALUES
+(8, 'SC-00001', 'ndour', 'amy', '773114557', 'amy@gmail.com', 9),
+(10, 'SC-00002', 'ndoure', 'amy', '773114557', 'amy@gmail.com', 9);
 
 -- --------------------------------------------------------
 
@@ -163,6 +170,7 @@ INSERT INTO `secretaire` (`Id_Secret_sercretaire`, `Nom_Secret_sercretaire`, `Pr
 
 CREATE TABLE `Service` (
   `Id_Serv_Service` int(40) NOT NULL,
+  `code_S` varchar(45) NOT NULL,
   `Nom_Serv_Service` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -170,9 +178,9 @@ CREATE TABLE `Service` (
 -- Contenu de la table `Service`
 --
 
-INSERT INTO `Service` (`Id_Serv_Service`, `Nom_Serv_Service`) VALUES
-(4, 'insuffisance_cardiaque'),
-(5, 'transplantation');
+INSERT INTO `Service` (`Id_Serv_Service`, `code_S`, `Nom_Serv_Service`) VALUES
+(9, 'SR-00001', 'cardilogue'),
+(10, 'SR-00002', 'chirurgien');
 
 -- --------------------------------------------------------
 
@@ -262,37 +270,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `Domaine`
 --
 ALTER TABLE `Domaine`
-  MODIFY `Id_Dom_Domaine` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_Dom_Domaine` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT pour la table `Medcin`
 --
 ALTER TABLE `Medcin`
-  MODIFY `Id_Med_Medcin` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_Med_Medcin` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `Patient`
 --
 ALTER TABLE `Patient`
-  MODIFY `id_P_Patient` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_P_Patient` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `Planning`
 --
 ALTER TABLE `Planning`
-  MODIFY `Id_Pl_Planning` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_Pl_Planning` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `Rv`
 --
 ALTER TABLE `Rv`
-  MODIFY `Id_rv_rv` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_rv_rv` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT pour la table `secretaire`
 --
 ALTER TABLE `secretaire`
-  MODIFY `Id_Secret_sercretaire` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_Secret_sercretaire` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `Service`
 --
 ALTER TABLE `Service`
-  MODIFY `Id_Serv_Service` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id_Serv_Service` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
