@@ -1,89 +1,114 @@
 <?php
+ ini_set("display_errors",1);
+ error_reporting(E_ALL);
 require_once'entities/Rendez_Vous.class.php';
- class RendezVousDB extends Model{
+ class RendezVousDB{
      //contructeur Rendez_vous
-public function construct(){
-    parent::__construct();
+
+        public $days=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samdi','Dimanche'];
+        private $months=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre',
+        'Nomvembre','Decembre'];
+        public $month;
+        public $year;
+/**
+ * 
+ */
+public function __construct(?int $month=null , ?int $year=null){
+    if($month==null  || $month<1 || $month>12){
+        $month=intval(date('m'));
+    }
+        if($year===null){
+            $year=intval(date('Y'));
+        }
+   
+    $this->month=$month;
+    $this->year=$year;
 }
-  //fonction ajout Rendez_vous
-public function addRv(RendezVousC $rv){
-    $sql="INSERT INTO Rv VALUES(NULL,'".$rv->getCodeRv()."','".$rv->getHeureRv()."','".$rv->getDateRv()."','".$rv->getIdM()."','".$rv->getIdP()."')";
-    if($this->db!=null){
-        return $this->db->exec($sql);;
-    }
-    return null;
+/**
+ * Retour le premier jout mois
+ */
+public function getStartingDay():DateTime{
+    return  new DateTime("{$this->year}-{$this->month}-01");
+
 }
-//fonction liste rv
-public function listerv(){
-    $sql="SELECT * FROM Rv";
-    if($this->db!=null){
-        return $this->db->query($sql)->fetchAll();
-    }else{
-        return null;
 
-    }
-
-    }
-    //fonction  recherche  rendez_ous
-    public function recherche($recherche){
-        $sql="SELECT * FROM Rv  WHERE  code_Rv ='$recherche'";
-        if($this->db!= null)
-        {
-            return $this->db->query($sql)->fetchAll();
-        }else{
-            return null;
-        }
-    }
-    //fonction delete rv
-    public function deleterv($idRv){
-        $sql = "DELETE FROM Rv WHERE id_rv_rv = $idRv";
-
-        if($this->db != null)
-        {
-            return $this->db->exec($sql);
-        }else{
-            return null;
-        }
-    }
-    //renvoie la colone selectionneé
-    public function getRv($idRv)
-    {
-        $sql = "SELECT *
-                 FROM Rv
-                 WHERE id_rv_rv= ".$idRv;
-        if($this->db!= null)
-        {
-            return $this->db->query($sql)->fetch();
-        }else{
-            return null;
-        }
-    }
-    //fonction de modification
-    public function updateRv(RendezVousC $rv){
-        $sql = "UPDATE Rv SET Heure_rv = '".$rv->getHeureRv()."',
-                         code_Rv ='".$rv->getCodeRv()."',
-                          Date_rv ='".$rv->getDateRv()."',
-                         Id_Med_Medcin='".$rv->getIdM()."',
-                         id_P_Patient='".$rv->getIdP()."'
-                    WHERE Id_rv_rv = ".$rv->getIdRv();
-        if($this->db != null)
-        {
-            return $this->db->exec($sql);
-            
-        }else{
-            return null;
-        }
-    }
-    public function nbRv(){
-        $sql="SELECT *  FROM Rv";
-        if($this->db!=null){
-         return $this->db->query($sql)->rowCount();
-        }else{
-            return null;
+/**
+* Retoureneb le mois en toute lettre (exp mars 2018);       
+*/
+public function toString():string{
+   return $this->months[$this->month-1].''.$this->year;
     
-        }
-    
-        }
+}
+public function geTWeeks(): int{
+    $start=$this->getStartingDay();
+    $and=(clone $start)->modify('+1 month -1 day');
+   $weeks=intval($and->format('W'))-intval($start->format('W'))+1;
+   if($weeks<0){
+       $weeks=intval($and->format('W'));
+   }else{
+       return $weeks;
+   } 
+}
+public function widthinMonth(DateTime $date): bool{
+    return $this->getStartingDay()->format('Y-m')===$date->format('Y-m');
+     
+}
+/**
+ * Return le mois suivant
+ */
+public function nextMonth()
+{
+    $month=$this->month+1;
+    $year=$this->year;
+    if($month>12){
+        $month=1;
+        $year+=1;
 
+    }
+    return new RendezVousDB($month,$year);
+} 
+/**
+ * Return le mois precedent
+ */
+public function previousMonth()
+{
+    $month=$this->month-1;
+    $year=$this->year;
+    if($month<1){
+        $month=12;
+        $year -=1;
+
+    }
+    return new RendezVousDB($month,$year);
+} 
+
+
+
+function e404(){
+    require_once '../public/404.php';
+    exit();
+}
+function add(...$vars){
+    foreach($vars as $var){
+        echo '<pre>';
+        print_r($var);
+        echo '</pre>';
+    }
+   
+}
+
+
+
+function h(?string $value): string{
+    if($value===null){
+    return '';
+    }
+    return htmlentities($value);
+}
+
+ 
+
+
+    
  }
 ?>

@@ -17,7 +17,9 @@ class MedcinDB extends Model{
     }
     //liste des Medecin
     public function listMedcin(){
-        $sql="SELECT * FROM Medcin";
+        $sql="SELECT  m.Id_Med_Medcin,m.code_Med,m.Nom_Med_Medcin,m.Prenom_Med_Medcin,m.Tel_Med_Medcin
+        ,m.Email_Med_Medcin,s.Nom_Serv_Service,d.Nom_Dom_Domaine FROM Medcin m,Service s,Domaine d
+        WHERE m.Id_Serv_Service=s.Id_Serv_Service AND m.Id_Dom_Domaine=m.Id_Dom_Domaine";
         if($this->db!=null){
           return  $this->db->query($sql)->fetchAll();
         }else{

@@ -15,7 +15,9 @@ class PlaningDB extends Model{
     }
     // la fonction liste des planing 
     public function listepl(){
-        $sql="SELECT * FROM Planning";
+        $sql="SELECT  p.Id_Pl_Planning,p.code_Pl,p.Date_Pl_Planning,p.Heure_Deb_Planning,p.Heure_Fin_Planning,
+        m.Prenom_Med_Medcin FROM Planning p , Medcin m
+           WHERE p.Id_Med_Medcin=m.Id_Med_Medcin";
         if($this->db!=null){
             return $this->db->query($sql)->fetchAll();
         }else{

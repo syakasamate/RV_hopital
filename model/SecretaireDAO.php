@@ -30,7 +30,10 @@ class SecretaireDB extends Model{
         }
         //fonction liste secretaire
         public function listSecretaire(){
-            $sql="SELECT  * FROM secretaire ";
+            $sql="SELECT  sec.Id_Secret_sercretaire,sec.code_Sec,sec.Nom_Secret_sercretaire,sec.Prenom_Secret_sercretaire
+            ,sec.Tel_Secret_sercretaire,sec.Email_Secret_sercretaire,s.Nom_Serv_Service
+             FROM secretaire sec,Service s 
+             WHERE sec.Id_Serv_Service=s.Id_Serv_Service";
             if($this->db!=null){
                 return $this->db->query($sql)->fetchAll();
             }else{
