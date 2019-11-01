@@ -8,9 +8,10 @@
 </head>
 <body>
 <div class="topnav  navbar-fixed-top" id="myTopnav">
-                <a href="<?php echo URL.'Users/log';?>" class="decon">Deconnetion</a>
+                <a href="<?php echo URL.'Users/log';?>" class="decon" onclick="return confirm('voulez-vous deconnecter ?');" >Deconnection</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">click  </a>
 
+</div>        
 </div>
 
 <div style="padding-left:16px">
@@ -29,7 +30,7 @@
     <button class="subnavbtn">RENDEZ_VOUS</i></button>
     <div class="subnav-content">
   <a href="<?php echo URL.'RendezVous/addR';?>">Ajout R_V</a>
-  <a href="<?php echo URL.'RendezVous/listerv';?>" >Liste R_V</a>
+  <a href="<?php  echo URL.'RendezVous/listeC';?>" >Liste R_V</a>
     </div>
   </div> 
 

@@ -1,6 +1,13 @@
 
-    <?php require_once'view/head.php' ;
+    <?php
+    ini_set("display_errors",1);
+    error_reporting(E_ALL);
+     require_once'view/head.php' ;
      require_once'view/headS.php';
+     echo '<pre>';
+         var_dump($data);
+         echo '<pre>';
+         die();
      ?>
     <body class="card text-white bg-success">
     <div style="margin-left:680px;width:500px;margin-top:-520px;margin-bottom:30px;" >

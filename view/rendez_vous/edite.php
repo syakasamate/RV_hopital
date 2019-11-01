@@ -8,7 +8,7 @@
 <body class="card text-white bg-info" >
 <div class="container col-md-5 col-md-offset-2">
     <div class="panel panel-info">
-    <div class="panel-heading">Ajout Rendez_Vous  </div>
+    <div class="panel-heading">Modifier  Rendez_Vous  </div>
     <div class="panel-body">
     <form action="<?php echo URL.'RendezVous/update';?>"   method="post">
     <div class="form-group">
@@ -20,20 +20,17 @@
     <input type="text" class="form-control" name="codeRv" value="<?= $rv[1]?>" readonly>
     </div>
     <div class="form-group">
-    <label for="" class="form control-label">Heure Rv</label>
-    <input type="time" class="form-control" name="heureRv"  value="<?= $rv[2]?>">
-    </div>
-    <div class="form-group">
     <label for="" class="form control-label">Date Rv</label>
-    <input type="date" class="form-control" name="dateRv"  value="<?= $rv[3]?>">
+    <input type="datetime-local" class="form-control" name="dateRv"  value="<?= $rv[3]?>">
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Medecin</label>
-    <select name="nomM" id="nomM">
+    <select  class="form-control" name="nomM" id="nomM">
     <?php
     foreach($data as $med ){
     foreach($med as $medecin){
       ?>
+      <option value=""></option>
         <option value="<?php  echo $medecin[0];?>"><?=$medecin[2]?></option>
         <?php
       
@@ -44,11 +41,12 @@
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Patient</label>
-    <select name="nomP" id="nomp">
+    <select  class="form-control" name="nomP" id="nomp">
     <?php 
     foreach($dat as $pat ){
     foreach($pat as $patient){
         ?>
+        <option value=""></option>
      <option value="<?= $patient[0]?>"><?=$patient[2]?></option>
      <?php
     }

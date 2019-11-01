@@ -3,7 +3,7 @@
  require_once'view/headMedecin.php';
  ?>
 <body class="card text-white bg-success">
-<div style="margin-left:780px;width:500px;margin-top:-450px;margin-bottom:30px;" >
+<div style="margin-left:935px;width:500px;margin-top:-450px;margin-bottom:30px;" >
       <form action="<?php echo URL.'Planing/recherche';?>" method="get">
       <div class="input-group">
       <input type="text" name="recherche"  id="btn-input" class="form-control input-sm-4 fas fa-search"placeholder="Saisir le  Code du Planing  à rechercher " >
@@ -34,7 +34,7 @@
           <th scope="col">Date Planing</th>
           <th scope="col">Heure Debut</th>
           <th scope="col">Heure Fin</th>
-          <th scope="col">ID Medecin</th>
+          <th scope="col">Prenom Medecin</th>
           <th scope="col" colspan="2 ">Action</th>
         </tr>
 <?php

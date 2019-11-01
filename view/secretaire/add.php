@@ -31,7 +31,7 @@ $r=sprintf("%05d",$dat);
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Service</label>
-    <select name="nomS" id="nomS">
+    <select  class="form-control" name="nomS" id="nomS">
     <?php
     foreach($data as $serv ){
     foreach($serv as $service){

@@ -44,7 +44,7 @@ $r=sprintf("%05d",$donne);
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Service</label>
-    <select name="nomS" id="nomS">
+    <select   class="form-control"  name="nomS" id="nomS">
     <?php
     foreach($data as $serv ){
     foreach($serv as $service){
@@ -59,7 +59,7 @@ $r=sprintf("%05d",$donne);
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Domaine</label>
-    <select name="nomD" id="nomS">
+    <select  class="form-control" name="nomD" id="nomS">
     <?php 
     foreach($dat as $dom ){
     foreach($dom as $domaine){

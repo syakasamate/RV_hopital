@@ -28,18 +28,14 @@
                 <div class="form-group">
                 <label for="" class="form control-label">Code Rv</label>
                 <input type="texte" class="form-control" name="codeRv"  value="RV-<?= $r?>" readonly>
-                </div>   
+                </div>      
                 <div class="form-group">
-                <label for="" class="form control-label">Heure Rv</label>
-                <input type="time" class="form-control" name="heureRv">
-                </div>    
-                <div class="form-group">
-                <label for="" class="form control-label">Date Rv</label>
-                <input type="date" class="form-control" name="dateRv">
+                <label for="" class="form control-label">Date Et Heure</label>
+                <input type="datetime-local" class="form-control" name="dateRv">
                 </div>
                 <div class="form-group">
                 <label for="" class="form control-label">Nom Medecin</label>
-                <select name="nomM" id="nomM">
+                <select    class="form-control" name="nomM" id="nomM">
                   <option value=""></option>
                 <?php
                 foreach($data as $med ){
@@ -55,7 +51,7 @@
                 </div>
                 <div class="form-group">
                 <label for="" class="form control-label">Nom Patient</label>
-                <select name="nomP" id="nomp">
+                <select   class="form-control" name="nomP" id="nomp">
                   <option value=""></option>
                 <?php 
                 foreach($dat as $pat ){

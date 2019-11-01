@@ -3,7 +3,7 @@
 require_once'view/headAdmin.php';
  ?>
 <body class="card text-white bg-success">
-<div style="margin-left:662px;width:500px;margin-top:-700px;margin-bottom:30px;" >
+<div style="margin-left:802px;width:500px;margin-top:-700px;margin-bottom:30px;" >
       <form action="<?php echo URL.'Medcin/recherche';?>" method="get">
       <div class="input-group">
       <input type="text" name="recherche"  id="btn-input" class="form-control input-sm-4 fas fa-search"placeholder="Saisir le code de Medcin à rechercher " >
@@ -35,8 +35,8 @@ require_once'view/headAdmin.php';
           <th scope="col">Prenom</th>
           <th scope="col">Tel</th>
           <th scope="col">Email</th>
-          <th scope="col">ID Service </th>
-          <th scope="col">ID Domaine</th>
+          <th scope="col">Nom Service </th>
+          <th scope="col">Nom Domaine</th>
 
           <th scope="col" colspan="2 ">Action</th>
         </tr>

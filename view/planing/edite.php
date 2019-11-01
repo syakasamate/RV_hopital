@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Medcin</label>
-    <select name="nomMed" id="nomMed">
+    <select   class="form-control" name="nomMed" id="nomMed">
     <?php
     foreach($data as $serv ){
     foreach($serv as $service){

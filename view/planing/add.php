@@ -25,7 +25,7 @@
     <form action="<?php echo URL.'Planing/addPl';?>"   method="post" >
     <div class="form-group">
     <label for="" class="form control-label">Code Planing </label>
-    <input type="texte" class="form-control" name="codePl"  value="MD-<?= $r?>" readonly>
+    <input type="texte" class="form-control" name="codePl"  value="PL-<?= $r?>" readonly>
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Date Planing</label>
@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Medcin</label>
-    <select name="nomMed" id="nomMed">
+    <select  class="form-control"  name="nomMed" id="nomMed">
     <?php
     foreach($data as $serv ){
     foreach($serv as $service){
