@@ -10,6 +10,12 @@
            if($_GET['url']==$cal){
             require_once'public/style/style.css';
         }
+        $con='public/style/con.css';
+        if($_GET['url']==$con){
+            require_once'public/style/con.css';
+        }
+        
+       
            if($_GET['url']==$bimd){
                require_once'Users/medical.jpg';
            }
