@@ -1,4 +1,6 @@
-<?php require_once'view/head.php';
+<?php
+
+ require_once'view/head.php';
 require_once'view/headS.php';
  ?>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,4 +15,3 @@ require_once'view/headS.php';
 
 
 </body>
-

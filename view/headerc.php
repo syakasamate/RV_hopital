@@ -15,6 +15,4 @@ error_reporting(E_ALL);
     <title>Document</title>
 </head>
  <body>
-  <nav class="navbar navbar-dark bg-primary mb-3" style=" width: 100%; padding:-40%;">
-  <a href="/index.php" class="navbar-brand">Mon clanrier</a>
   </nav>  

@@ -6,7 +6,7 @@
 ?>
 
 <body class="card text-white bg-info" >
-<div class="container col-md-5 col-md-offset-2">
+<div class="container  col-md-6 col-xs-10 col-md-offset-3" style="margin-top:-500px;">
     <div class="panel panel-info">
     <div class="panel-heading">Modifier  Rendez_Vous  </div>
     <div class="panel-body">
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Date Rv</label>
-    <input type="datetime-local" class="form-control" name="dateRv"  value="<?= $rv[3]?>">
+    <input type="datetime-local" class="form-control" name="dateRv"  value="<?= $rv[2]?>">
     </div>
     <div class="form-group">
     <label for="" class="form control-label">Nom Medecin</label>

@@ -1,5 +1,8 @@
 
-
+<?php 
+session_start();
+     
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
 </head>
 <body>
 <div class="topnav  navbar-fixed-top" id="myTopnav">
-                <a href="<?php echo URL.'Users/log';?>" class="decon" onclick="return confirm('voulez-vous deconnecter ?');">Deconnetion</a>
+                <a href="<?php  echo URL.'Users/logg/'.$deconnection=true;?>" class="decon" onclick="return confirm('voulez-vous deconnecter ?');">Deconnetion</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">click  </a>
 
 </div>
