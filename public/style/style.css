@@ -2,7 +2,7 @@ a{
     color: wheat;
 }
 .calendar__table{
-    width: 100%;
+    width: 40%;
     height:calc(100vh - 128px);
     
    
@@ -15,6 +15,7 @@ a{
     vertical-align: top;
     width: 14.28%;
     height: 20%;
+ 
 }
 .calendar__table--6weeks td{
 height: 16.66%;
