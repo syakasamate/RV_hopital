@@ -8,5 +8,14 @@ define('LISTES','service/liste.php');
 define('LISTEPL','planing/liste.php');
 define('LISTERV','rendez_vous/liste.php');
 define('USER','users/log.php');
+define('PROFIL','profil');
+define('ADMIN','admin');
+define('SEC','secretaire');
+define('MED','medcin');
+
+
+define('LOCATION','location:../Users/log');
+define('LOC','location:../log');
+
 
 ?>
