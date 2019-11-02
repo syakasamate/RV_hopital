@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once'entities/Planing.class.php';
 require_once'model/MedcinDAO.php';
 require_once'model/PlaningDAO.php';
@@ -10,6 +11,7 @@ class Planing extends Controller{
 public function addPl(){
     //Intanciation du model
     $addpl=new PlaningDB();
+    if(isset($_SESSION['med'])&& $_SESSION['med']==MED){
            $dat=0;
             if(isset($_POST['envoyer'])){
             $codePl=$_POST['codePl'];
@@ -46,17 +48,24 @@ public function addPl(){
             
 
         }
-     
+    }else{
+        header(LOCATION);
+      }
     }
     //fonction liste planing
     public function listepl(){
+        if(isset($_SESSION['med'])&& $_SESSION['med']==MED){
+
         $pldb=new PlaningDB();  
          $data['list']=$pldb->listepl();
            return $this->view->load(LISTEPL,$data);
         
-    
+        }else{
+            header(LOCATION);
+          }
         }
         public function recherche(){
+            if(isset($_SESSION['med'])&& $_SESSION['med']==MED){
             $idP=$_GET['recherche'];
              $pl=new PlaningDB();   
              $data['list']=$pl->recherche($idP);
@@ -68,10 +77,14 @@ public function addPl(){
          $data['liste']=$pldb->listepl();
            return $this->view->load(LISTEPL,$data,$dat); 
         }
+    }else{
+        header(LOCATION);
+      }
             } 
     
     //methode de modification de rendez_vous
     public function update(){
+        if(isset($_SESSION['med'])&& $_SESSION['med']==MED){
         //Instanciation du model
         $pl=new PlaningDB();  
         if(isset($_POST['Modifier'])){
@@ -90,12 +103,16 @@ public function addPl(){
                 $data['listee']=$ok;
            }
         }
-    
+      
         return  $this->listepl();
+    }else{
+        header(LOCATION);
+      }
     }
 
     public function edit($idPl){
-            
+        if(isset($_SESSION['med'])&& $_SESSION['med']==MED){
+        
         //Instanciation du model
         $pdb=new PlaningDB();
         //Supression
@@ -106,7 +123,10 @@ public function addPl(){
         $data['liste']=$listMed->listMedcin();
         //chargement de la vue edite.php
         return $this->view->load("planing/edite.php",$data,$dat);
-    }
+    }else{
+        header(LOCATION);
+      }
+}
     public function delete($idPl){
         //Instanciation du model
         $pdb=new PlaningDB();

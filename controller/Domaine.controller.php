@@ -10,6 +10,7 @@ class Domaine extends Controller{
     }
     // la methode ajout  Domaine
       public  function addD(){
+        if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
           //Intanciation du model
             $ddb=new DomaineDB();
             $data['ok']=0;
@@ -34,9 +35,15 @@ class Domaine extends Controller{
                 return $this->view->load('domaine/add.php',$data,$dat);   
 
             }
+        }else{
+           
+            header(LOCATION);
+        }
         }
          //methode de modification de Domaine
          public function update(){
+        if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
             //Instanciation du model
             $ddb=new DomaineDB();
             if(isset($_POST['Modifier'])){
@@ -53,31 +60,52 @@ class Domaine extends Controller{
             }
         
             return  $this->listeD();
+        }else{
+           
+            header(LOCATION);
         }
+    }
         public function edit($idD){
-			
+            if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
             //Instanciation du model
             $pdb=new DomaineDB(); 
             //Supression
             $data['test']=$pdb->getDomaine($idD);
             //chargement de la vue edite.php
             return $this->view->load("domaine/edite.php", $data);
+        }else{
+           
+            header(LOCATION);
         }
+    }
         public function delete($idD){
+            if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
             //Instanciation du model
             $pdb=new  DomaineDB();  
             //Supression
             $pdb-> deleteDomaine($idD);
             //Retour vers la liste
             return $this->listeD();
+        }else{
+           
+            header(LOCATION);
         }
+    }
         //function liste Domaine
         public function  listeD(){
+            if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
             $listed=new DomaineDB();
             $data['liste']= $listed->listeDomaine();
                 return $this->view->load('domaine/liste.php',$data);   
         
+        }else{
+           
+            header(LOCATION);
         }
+    }
 
   
 }

@@ -11,6 +11,7 @@
           require_once'model/IPatientDAO.php';
           require_once'model/Rendez_VousDAO.php';
          require_once'entities/User.class.php';
+         require_once'model/EventDAO.php';
 
         class Users extends Controller {
             
@@ -18,6 +19,11 @@
                 parent::__construct();
             }
    //la fonction connection
+   public function logg(){
+      session_unset();
+      session_destroy();
+      header(LOC);
+   }
         public function log(){
             $erreur=false;
             if(isset($_POST['connecter'])){
@@ -31,12 +37,15 @@
             }
             //si la connection existe
                 if($data){
-                    $_SESSION['log']=true;
-                    if($pa['profil']=='secretaire'){
+                   
+                    if($pa[PROFIL]=='secretaire'){
+                        $_SESSION['sec']=$pa[PROFIL];
                     header('Location:menu');
-                    }elseif($pa['profil']=='admin'){
+                    }elseif($pa[PROFIL]=='admin'){
+                        $_SESSION['ad']=$pa[PROFIL];
                         header('Location:menuA');
-                    }else {
+                    }elseif($pa[PROFIL]=='medcin'){
+                           $_SESSION['med']=$pa[PROFIL];
                         header('Location:menuM');
                     }
                     
@@ -61,11 +70,17 @@
         }
         //fonction menu secretaire 
                 public function menu(){
-                    $addr=new RendezVousDB ();
+                    $addr= new EventDB();
                     $dat=$addr->nbRv();
                     $pdb=new PatientDB();
                     $data=$pdb->nbPa();
+                    if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC){
+
                 return $this->view->load('menu.php',$data,$dat);
+                    }else{
+           
+                        header(LOCATION);
+                    }
                     }
             //fonction menu admin
                 public function menuA(){
@@ -77,14 +92,23 @@
                     $dat=$nbmed->nbMed();
                     $donne=$nbserv->nbServ();
                     $donne1=$nbdom->nbdom();
-        
-                    
+                    if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
                     return $this->view->load('menuA.php',$data,$dat,$donne,$donne1);
+                    }else{
+           
+                        header(LOCATION);
+                    }
                     }
                 //fonction menu Medcin
                     public function menuM(){
+                        if(isset($_SESSION['med'])&& $_SESSION['med']==MED){
 
                         return $this->view->load('menuM.php');
+                        }else{
+           
+                            header(LOCATION);
+                        }
                 }
         }
         ?>

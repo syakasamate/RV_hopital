@@ -1,5 +1,6 @@
     <?php
     require_once'view/head.php' ;
+require_once'view/headS.php' ;
     ini_set("display_errors",1);
     error_reporting(E_ALL);
     //les dependances
@@ -30,13 +31,13 @@ class RendezVous extends Controller{
              require_once'view/headerc.php';
              ?>
              <div class="d-flex flex-row align-items-center justify-content-between max-sm-3">
-             <h1><?= $month->toString();?></h1>
+             <h1 style="margin-top:-700px;" class="col-md-offset-4"><?= $month->toString();?></h1>
               <div style="margin-left:94%">
-             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->previousMonth()->month;?>&year=<?=$month->previousMonth()->year;?>" class="btn btn-primary">&lt</a>
-             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->nextMonth()->month;?>&year=<?=$month->nextMonth()->year;?>" class="btn btn-primary">&gt</a>
+             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->previousMonth()->month;?>&year=<?=$month->previousMonth()->year;?>" class="btn btn-primary" style="margin-top:200px;">&lt</a>
+             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->nextMonth()->month;?>&year=<?=$month->nextMonth()->year;?>" class="btn btn-primary" style="margin-top:200px;">&gt</a>
              </div>
              </div>
-             <table class="calendar__table calendar__table--<?= $weeks;?>weeks">
+             <table class=" container  col-md-8 col-xs-10 col-md-offset-3 calendar__table calendar__table--<?= $weeks;?>weeks " style="margin-top:-10px;" >
              <caption></caption>
              <th scope="col" ></th>
              <?php for($i=0;$i<$weeks;$i++):?>
@@ -82,7 +83,7 @@ class RendezVous extends Controller{
               }
              
               ?>
-           <div class="container    col-md-7 -xs-10 col-md-offset-1" style="margin-top:20px; ">
+           <div class="container    col-md-7 -xs-10 col-md-offset-3" style=" margin-top:-520px;margin-bottom:30px;">
         <div class="panel panel-info" >
             <div class="panel-heading"> <h5>Dataille Rendez_vous</h5></div>
             <div class="panel-body">
@@ -121,6 +122,8 @@ class RendezVous extends Controller{
         
  // la methode ajout rencez_vous    
  public function addR(){
+  if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC){
+
         //Intanciation du model
         $addr=new EventDB(); 
         if(isset($_POST['envoyer'])){
@@ -158,17 +161,27 @@ class RendezVous extends Controller{
             return $this->view->load("rendez_vous/add.php",$data,$dat,$donne); 
         }
     
-    }
+    }else{
+           
+      header(LOCATION);
+  }
+  }
     //liste des rendez_vous
     public function listerv(){
+      if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC ||isset($_SESSION['med'])&& $_SESSION['med']==MED ){
+
         $rvdb=new EventDB();
         $data['liste']=$rvdb->listerv();
         return $this->view->load(LISTERV,$data);
-        
+      }else{
+           
+        header(LOCATION);
+    }
 
         }
         //methode de modification de rendez_vous
         public function update(){
+          if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC){
             //Instanciation du model
             $rdb=new EventDB();
             if(isset($_POST['Modifier'])){
@@ -188,10 +201,14 @@ class RendezVous extends Controller{
             header('location:../RendezVous/listeC');
 
             return  $this->listerv();
-        }
-    
+        }else{
+           
+          header(LOCATION);
+      }
+      }
         public function edit($idRv){
-                
+          if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC){
+
             //Instanciation du model
             $rdb=new EventDB();
             //Supression
@@ -203,7 +220,11 @@ class RendezVous extends Controller{
             $listP=new PatientDB();
             $dat['list']=$listP->listepatient();
             return $this->view->load("rendez_vous/edite.php",$data,$dat,$donne);
-        }
+        }else{
+           
+          header(LOCATION);
+      }
+      }
         public function delete($idRv){
             //Instanciation du model
             $rdb=new RendezVousDB();  
@@ -214,6 +235,8 @@ class RendezVous extends Controller{
         }
           // fonction rechere rendez_vous
     public function recherche(){
+      if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC){
+
         $idRv=$_GET['recherche'];
         $rdb=new RendezVousDB();  
         $dat['list']=$rdb->recherche($idRv);
@@ -225,8 +248,11 @@ class RendezVous extends Controller{
           $rvdb=new RendezVousDB ();  
         $data['liste']=$rvdb->listerv();
           return $this->view->load(LISTERV,$data,$dat);
-
       }
+      }else{
+           
+        header(LOCATION);
+    }
    
   }
 

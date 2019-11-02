@@ -11,6 +11,7 @@ class Medcin extends  Controller{
     }
     public function addM(){
         //Instanciation du model
+        if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
             $addm=new MedcinDB();
             $pdb=new PatientDB(); 
             if(isset($_POST['envoyer'])){
@@ -59,16 +60,27 @@ class Medcin extends  Controller{
 
         }
      
+    }else{
+            
+        header(LOCATION);
     }
+}
    
    //Le Model liste Medcin
    function listeM(){
+    if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
     $listM=new MedcinDB();
      $data['list']=$listM->listMedcin();
      return $this->view->load(LISTEM,$data);
-
+    }else{
+            
+        header(LOCATION);
+    }
    }  
    public function recherche(){
+    if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
     $idM=$_GET['recherche'];
      $pdb=new MedcinDB();    
      $dat['list']=$pdb->recherche($idM);
@@ -82,9 +94,14 @@ class Medcin extends  Controller{
 
 }
         
-
+    }else{
+            
+        header(LOCATION);
+    }
     }
     public function edit($idM){
+        if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
         //Instanciation du model
            $listM=new MedcinDB();
         //Supression
@@ -95,16 +112,27 @@ class Medcin extends  Controller{
             $listD=new DomaineDB();
             $dat['list']=$listD->listeDomaine();
         return $this->view->load("medcin/edite.php", $data,$dat,$donne);
+        }else{
+            
+            header(LOCATION);
+        }
     }
     public function delete($idM){
+        if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
         //Instanciation du model
         $listM=new MedcinDB();
         //Supression
         $listM->deleteMedcin($idM);
         //Retour vers la liste
         return $this->listeM();
+        }else{
+            
+            header(LOCATION);
+        }
     }
     public function update(){
+        if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
+
         //Instanciation du model
         $addm=new MedcinDB();
         if(isset($_POST['Modifier'])){
@@ -127,7 +155,12 @@ class Medcin extends  Controller{
         }
        
         return  $this->listeM();
+    }else{
+            
+        header(LOCATION);
     }
+
+}
    
 }
 

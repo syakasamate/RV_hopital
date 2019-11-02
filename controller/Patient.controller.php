@@ -9,6 +9,7 @@ class Patient  extends Controller{
         parent::__construct();
     }
     public function addP(){
+        if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC){
        $pdb=new PatientDB(); 
        $dat=0;    
        if(isset($_POST['envoyer'])){
@@ -42,7 +43,10 @@ class Patient  extends Controller{
         $data=$pdb->nbPa();
         return $this->view->load("patient/add.php",$data);
        }
-
+    }else{
+           
+        header(LOCATION);
+    }
     }
     public function update(){
         //Instanciation du model

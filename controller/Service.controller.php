@@ -1,5 +1,6 @@
 <?php
 //les depandances
+session_start();
 require_once'model/ServiceDAO.php';
 require_once'entities/Service.class.php';
 class Service extends Controller{
@@ -9,7 +10,8 @@ class Service extends Controller{
     }
     //la fonction qjout service
       public  function addS(){
-          //Intanciation du model
+          //Intanciation du modelelse
+            if(isset($_SESSION['ad']) && $_SESSION['ad']==ADMIN){
             $dds=new ServiceDB();
             if(isset($_POST['envoyer'])){
                 $data['ok']=0;
@@ -32,7 +34,11 @@ class Service extends Controller{
                 return $this->view->load('service/add.php',$data);   
 
             }
+            
+        }else{
+          header(LOCATION);
         }
+    }
         //liste Domaine
         public function  listeS(){
             $listeS=new ServiceDB();
