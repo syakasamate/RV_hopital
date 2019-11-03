@@ -1,5 +1,6 @@
 <?php
 // les dependances 
+session_start();
 require_once'model/MedcinDAO.php';
 require_once'model/ServiceDAO.php';
 require_once'model/DomaineDAO.php';

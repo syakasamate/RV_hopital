@@ -1,4 +1,5 @@
     <?php
+    session_start();
     require_once'view/head.php' ;
 require_once'view/headS.php' ;
     ini_set("display_errors",1);
@@ -123,42 +124,57 @@ class RendezVous extends Controller{
  // la methode ajout rencez_vous    
  public function addR(){
   if(isset( $_SESSION['sec'])&&  $_SESSION['sec']==SEC){
-
+         $donne1="";
         //Intanciation du model
         $addr=new EventDB(); 
         if(isset($_POST['envoyer'])){
+        
             $codeRv=$_POST['codeRv'];
             $dateRv=$_POST['dateRv'];
             $nomM=$_POST['nomM'];
             $nomP=$_POST['nomP'];
-            if( !empty($dateRv)&& !empty($nomM) && !empty($nomP)){
+            $dath= (new DateTime($dateRv))->format('H:i');
+            $dt1=(new DateTime($dateRv))->format('12:00');
+            $dt2=(new DateTime($dateRv))->format('15:00');
+            $jour=strftime('%A', strtotime($dateRv));
+            if(!($dath<$dt1||$dath>$dt2)&&!($dath<$dt1||$dath>$dt2)){
+         
+             $donne1="L'heur de Rendez_vous est compris entre  8h-12h et 15h-17h";
+  
+            }elseif($jour==="Sunday" || $jour==="Saturday"){
+              $donne1="Impossible de prendre le Rendez_vous ni le Samedi ni le Dimanche   ";
+               
+          }else{
+            if(!empty($dateRv)&& !empty($nomM) && !empty($nomP)){
                 //Intanciation du class
                 $rv= new  RendezVousC();
                 $rv->setcodeRv($codeRv);
                 $rv->setDateRv($dateRv);
                 $rv->setIdM($nomM);
-                $rv->setIdP($nomP);
+                $rv->setIdP($nomP); 
                 //appel à la fonction ajout
-                $addr->addRv($rv);
-                
+                $addr->addRv($rv); 
             }
+         }
+
             //liste deroulante medecin
             $listM=new MedcinDB();
             $data['list']=$listM->listMedcin();
+           
             //liste deroulante patient 
             $listP=new PatientDB();
             $dat['list']=$listP->listepatient();
             $events= new EventDB();
-             $donne=$events->nbRv();
-            return $this->view->load("rendez_vous/add.php",$data,$dat,$donne);
+            $donne=$events->nbRv();
+            return $this->view->load("rendez_vous/add.php",$data,$dat,$donne,$donne1);
         }else{
             $listM=new MedcinDB();
             $data['list']=$listM->listMedcin();
             $listP=new PatientDB();
             $dat['list']=$listP->listepatient();
             $events= new EventDB();
-              $donne=$events->nbRv();
-            return $this->view->load("rendez_vous/add.php",$data,$dat,$donne); 
+            $donne=$events->nbRv();
+            return $this->view->load("rendez_vous/add.php",$data,$dat,$donne,$donne1); 
         }
     
     }else{
