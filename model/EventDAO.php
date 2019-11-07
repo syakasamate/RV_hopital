@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 
       public function getEventsBetween() {
-        $sql="SELECT r.Id_rv_rv,r.code_Rv,r.Date_Heur_Rv,m.Prenom_Med_Medcin,p.Prenom_p 
+        $sql="SELECT r.Id_rv_rv,r.code_Rv,r.Date_Rv,m.Prenom_Med_Medcin,p.Prenom_p 
         FROM Rv r,Medcin m,Patient p 
         WHERE r.Id_Med_Medcin=m.Id_Med_Medcin AND r.id_P_Patient=p.id_P_Patient" ;
 
@@ -25,7 +25,7 @@ error_reporting(E_ALL);
        $events=$this->getEventsBetween($start,$end);
        $days=[];
        foreach ($events as  $event) {
-         $date=explode(' ',$event['Date_Heur_Rv'])[0];
+         $date=explode(' ',$event['Date_Rv'])[0];
          if(!isset($days[$date])){
            $days[$date]=[$event];
          }else{
@@ -40,7 +40,7 @@ error_reporting(E_ALL);
     public function find(int $id):array
     {
     
-        $sql="SELECT r.Id_rv_rv,r.code_Rv,r.Date_Heur_Rv,m.Prenom_Med_Medcin,p.Prenom_p 
+        $sql="SELECT r.Id_rv_rv,r.code_Rv,r.Date_Rv,r.Heure_rv,m.Prenom_Med_Medcin,p.Prenom_p 
         FROM Rv r,Medcin m,Patient p 
         WHERE r.Id_Med_Medcin=m.Id_Med_Medcin AND r.id_P_Patient=p.id_P_Patient  AND r.Id_rv_rv = $id LIMIT 1"; 
       if($this->db!= null)
@@ -63,7 +63,7 @@ error_reporting(E_ALL);
     }
     //fonction ajout Rendez_vous
 public function addRv(RendezVousC $rv){
-  $sql="INSERT INTO Rv VALUES(NULL,'".$rv->getCodeRv()."','".$rv->getDateRv()."','".$rv->getIdM()."','".$rv->getIdP()."')";
+  $sql="INSERT INTO Rv VALUES(NULL,'".$rv->getCodeRv()."','".$rv->getDateRv()."','".$rv->getHeureRv()."','".$rv->getIdM()."','".$rv->getIdP()."')";
   if($this->db!=null){
       return $this->db->exec($sql);;
   }
