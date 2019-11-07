@@ -32,13 +32,13 @@ class RendezVous extends Controller{
              require_once'view/headerc.php';
              ?>
              <div class="d-flex flex-row align-items-center justify-content-between max-sm-3">
-             <h1 style="margin-top:-700px;" class="col-md-offset-4"><?= $month->toString();?></h1>
+             <h1 style="margin-top:-500px;" class="col-md-offset-4"><?= $month->toString();?></h1>
               <div style="margin-left:94%">
-             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->previousMonth()->month;?>&year=<?=$month->previousMonth()->year;?>" class="btn btn-primary" style="margin-top:200px;">&lt</a>
-             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->nextMonth()->month;?>&year=<?=$month->nextMonth()->year;?>" class="btn btn-primary" style="margin-top:200px;">&gt</a>
+             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->previousMonth()->month;?>&year=<?=$month->previousMonth()->year;?>" class="btn btn-primary" style="margin-top:10px;">&lt</a>
+             <a href="<?php  echo URL.'RendezVous/listeC'?>?month=<?=$month->nextMonth()->month;?>&year=<?=$month->nextMonth()->year;?>" class="btn btn-primary" style="margin-top:10px;">&gt</a>
              </div>
              </div>
-             <table class=" container  col-md-8 col-xs-10 col-md-offset-3 calendar__table calendar__table--<?= $weeks;?>weeks " style="margin-top:-10px;" >
+             <table class=" container  col-md-8 col-xs-10 col-md-offset-3 calendar__table calendar__table--<?= $weeks;?>weeks " style="margin-top:-25px;" >
              <caption></caption>
              <th scope="col" ></th>
              <?php for($i=0;$i<$weeks;$i++):?>
@@ -58,7 +58,7 @@ class RendezVous extends Controller{
               <div class="calendar__day"><?=$date->format('d')?></div>
               <?php foreach($eventsForDay as $event):?>
               <div class="calendar__event">
-              <?=(new DateTime($event['Date_Heur_Rv']))->format('H:i')?>- <a href="<?php  echo URL.'RendezVous/Detail'?>?id=<?=$event['Id_rv_rv'];?>"> <input type="submit"  class="btn-info" value='voir Detaille'></a> <br> <br>
+              <?=(new DateTime($event['Date_Rv']))->format('H:i')?>- <a href="<?php  echo URL.'RendezVous/Detail'?>?id=<?=$event['Id_rv_rv'];?>"> <input type="submit"  class="btn-info" value='voir Detaille'></a> <br> <br>
 
               </div>
                <?php endforeach;?>
@@ -103,7 +103,7 @@ class RendezVous extends Controller{
           <th scope="col">Code Rendez_vous</th>
           <th scope="col">Date Rv</th>
           <th scope="col">Heure Rv</th>
-          <th scope="col">Nom Patient</th>
+          <th scope="col">Nom Medcin</th>
           <th scope="col">Nom Patient</th>
           <th scope="col" colspan="2 ">Action</th>
         </tr>
@@ -111,14 +111,36 @@ class RendezVous extends Controller{
         echo "<tr>
         <td>$event[1]</td>
         <td>"?> <?=  (new DateTime($event[2]))->format('d/m/Y')?>  <?= "</td>
-        <td>"?> <?= (new DateTime($event[2]))->format('H:i') ?><?="</td>
-        <td>$event[3]</td>
-        <td>$event[4]</td>"?>
+        <td>"?> <?= (new DateTime($event[3]))->format('H:i') ?><?="</td>
+        <td>$event[4]</td>
+        <td>$event[5]</td>"?>
         <td><button class="btn-info"><a href="<?php  echo URL.'RendezVous/edit/'.$event[0];?>"> Edider</a></button> </td>
+        <td><button class="btn-info"><a href="<?php  echo URL.'RendezVous/Imp/'.$event[0];?>?id=<?=$event['Id_rv_rv'];?>"> Impression</a></button> </td>
+
         <?php
       echo" </tr> ";
              
         }
+
+        public function Imp(){
+            $events= new EventDB();
+    
+            if(!isset($_GET['id'])){
+              
+                 $ok=true;
+            }
+              try {
+               $data =$events->find($_GET[('id')]);
+             } catch (\Exeception $e) {
+              e404();
+              }
+              return $this->view->load("rendez_vous/imp.php",$data);
+
+             
+    
+        }
+
+       
         
         
  // la methode ajout rencez_vous    
@@ -131,17 +153,21 @@ class RendezVous extends Controller{
         
             $codeRv=$_POST['codeRv'];
             $dateRv=$_POST['dateRv'];
+            $heureRv=$_POST['heureRV'];
             $nomM=$_POST['nomM'];
             $nomP=$_POST['nomP'];
-            $dath= (new DateTime($dateRv))->format('H:i');
-            $dt1=(new DateTime($dateRv))->format('12:00');
-            $dt2=(new DateTime($dateRv))->format('15:00');
+            $dath= (new DateTime($heureRv))->format('H:i');
+            $dt1=(new DateTime( $heureRv))->format('12:00');
+            $dt2=(new DateTime( $heureRv))->format('15:00');
+            $dt3=(new DateTime( $heureRv))->format('17:00');
+            $dt4=(new DateTime( $heureRv))->format('07:59');
             $jour=strftime('%A', strtotime($dateRv));
             if(!($dath<$dt1||$dath>$dt2)&&!($dath<$dt1||$dath>$dt2)){
-         
-             $donne1="L'heur de Rendez_vous est compris entre  8h-12h et 15h-17h";
-  
-            }elseif($jour==="Sunday" || $jour==="Saturday"){
+              $donne1="L'heur de Rendez_vous est compris entre  8h-12h et 15h-17h";
+            }elseif(!($dath<$dt3||$dath>$dt4)&&!($dath<$dt3||$dath>$dt4)){
+               $donne1="L'heur de Rendez_vous est compris entre  8h-12h et 15h-17h";
+               }
+             elseif($jour==="Sunday" || $jour==="Saturday"){
               $donne1="Impossible de prendre le Rendez_vous ni le Samedi ni le Dimanche   ";
                
           }else{
@@ -150,6 +176,7 @@ class RendezVous extends Controller{
                 $rv= new  RendezVousC();
                 $rv->setcodeRv($codeRv);
                 $rv->setDateRv($dateRv);
+                $rv->setHeureRv($heureRv);
                 $rv->setIdM($nomM);
                 $rv->setIdP($nomP); 
                 //appel à la fonction ajout
