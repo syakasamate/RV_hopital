@@ -4,7 +4,6 @@
            $rv[0];
     }
 ?>
-
 <body class="card text-white bg-info" >
 <div class="container  col-md-6 col-xs-10 col-md-offset-3" style="margin-top:-500px;">
     <div class="panel panel-info">

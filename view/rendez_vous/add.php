@@ -19,8 +19,12 @@
                 <input type="texte" class="form-control" name="codeRv"  value="RV-<?= $r?>" readonly>
                 </div>      
                 <div class="form-group">
-                <label for="" class="form control-label">Date Et Heure</label>
-                <input type="datetime-local" class="form-control" name="dateRv">
+                <label for="" class="form control-label">Date Rv</label>
+                <input type="date" class="form-control" name="dateRv">
+                </div>
+                <div class="form-group">
+                <label for="" class="form control-label">Heure Rv</label>
+                <input type="time" class="form-control" name="heureRV">
                 </div>
                 <?php 
                if(!empty($donne1)){
