@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 01 Novembre 2019 à 11:08
+-- Généré le :  Jeu 07 Novembre 2019 à 17:10
 -- Version du serveur :  5.7.26-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.19-0ubuntu0.18.04.1
 
@@ -125,7 +125,8 @@ INSERT INTO `Planning` (`Id_Pl_Planning`, `code_Pl`, `Date_Pl_Planning`, `Heure_
 CREATE TABLE `Rv` (
   `Id_rv_rv` int(40) NOT NULL,
   `code_Rv` varchar(45) NOT NULL,
-  `Date_Heur_Rv` datetime NOT NULL,
+  `Date_Rv` datetime NOT NULL,
+  `Heure_rv` time NOT NULL,
   `Id_Med_Medcin` int(40) DEFAULT NULL,
   `id_P_Patient` int(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -134,9 +135,9 @@ CREATE TABLE `Rv` (
 -- Contenu de la table `Rv`
 --
 
-INSERT INTO `Rv` (`Id_rv_rv`, `code_Rv`, `Date_Heur_Rv`, `Id_Med_Medcin`, `id_P_Patient`) VALUES
-(8, 'RV-00001', '2019-11-02 04:44:00', 1, 1),
-(9, 'RV-00001', '2019-11-01 14:25:00', 1, 1);
+INSERT INTO `Rv` (`Id_rv_rv`, `code_Rv`, `Date_Rv`, `Heure_rv`, `Id_Med_Medcin`, `id_P_Patient`) VALUES
+(38, 'RV-00001', '2019-11-01 00:00:00', '10:00:00', 1, 1),
+(39, 'RV-00002', '2019-11-04 00:00:00', '11:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -290,7 +291,7 @@ ALTER TABLE `Planning`
 -- AUTO_INCREMENT pour la table `Rv`
 --
 ALTER TABLE `Rv`
-  MODIFY `Id_rv_rv` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Id_rv_rv` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT pour la table `secretaire`
 --
